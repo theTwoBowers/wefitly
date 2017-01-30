@@ -37,7 +37,6 @@
     "webpack-dev-server": "^1.16.2"
   },
   "devDependencies": {
-    "browser-sync-webpack-plugin": "^1.1.3",
     "install": "^0.8.4",
     "npm": "^4.1.1"
   }
