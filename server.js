@@ -29,9 +29,9 @@ var MemoryStore = session.MemoryStore;
 app.use(session({
   secret: 'themitochondriaisthepowerhouseofthecell',
   resave: true,
-  store:new MemoryStore(),
+  store: new MemoryStore(),
   saveUninitialized: true,
-  httpOnly:false
+  httpOnly: false
 }));
 
 // app.use(passport.initialize());
@@ -45,9 +45,11 @@ app.post('/api/trainerSignin', TrainerController.signin);
 app.get('/api/filterTrainers', TrainerController.filter);
 app.get('/api/getAllTrainers', TrainerController.getAll);
 app.post('/api/updateTrainer', TrainerController.updateTrainer);
-app.get('/api/getprofile',     TrainerController.getProfile);
+app.get('/api/getprofile', TrainerController.getProfile);
 app.post('/api/bookings', BookingController.addBooking);
 app.get('/api/bookings', BookingController.displayBookings);
+app.put('/api/bookings', BookingController.confirmBooking);
+app.delete('/api/bookings', BookingController.deleteBooking);
 // mongoose.connection('mongodb://localhost/')
 // const db = mongoose.connection;
 
