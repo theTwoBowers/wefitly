@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var TrainerReviewSchema = new Schema({
   name: String,
   review: String,
-  rating: Number
+  rating: Number,
+  trainer: String
 });
 
 module.exports = mongoose.model('TrainerReview', TrainerReviewSchema);
