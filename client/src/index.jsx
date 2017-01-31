@@ -7,7 +7,7 @@ import Signup from './Signup.jsx';
 import Signin from './Signin.jsx';
 import TrainerProfile from './trainerProfile.jsx';
 import UserDash from './UserDash.jsx';
-import TrainerDash from './TrainerDash.jsx'
+import TrainerDash from './TrainerDash.jsx';
 import _ from 'lodash';
 
 class App extends React.Component {
@@ -16,7 +16,7 @@ class App extends React.Component {
 
     this.state = {
       bookings: []
-    }
+    };
   }
 
   onUserSignUp(postRequestData) {
@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   onTrainerSignUp(postRequestData) {
-    window.location.href = '#/trainerprofile';
+    window.location.href = '#/trainerdash';
   }
 
   onTrainerSignin(postRequestData) {
@@ -41,7 +41,7 @@ class App extends React.Component {
   componentDidMount() {
     const currentBookings = this.state.bookings;
     const currentUser = this.state.user;
-    console.log('your bookings', this.state.bookings)
+    console.log('your bookings', this.state.bookings);
     $.get('/api/bookings').done((data) => {
       data.forEach(function(booking) {
         currentBookings.push(booking);
@@ -49,12 +49,12 @@ class App extends React.Component {
 
       this.setState({
         bookings: currentBookings
-      })
-    })
+      });
+    });
   }
 
   render() {
-    return(
+    return (
 
       <Router history={hashHistory}>
         <Route path="/usersignup" component={()=>(
@@ -81,4 +81,4 @@ class App extends React.Component {
   }
 }
 
-render(<App/>,document.getElementById('app'));
+render(<App/>, document.getElementById('app'));
