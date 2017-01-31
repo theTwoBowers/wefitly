@@ -10,6 +10,7 @@ const UserModel = require('./modules/db/userMethods.js');
 const UserController = require('./modules/db/UserController.js');
 const TrainerController = require('./modules/db/trainerController.js');
 const BookingController = require('./modules/db/BookingController.js');
+const ReviewController = require('./modules/db/reviewController.js');
 
 mongoose.connect('mongodb://localhost:27017/wefitlytest');
 
@@ -50,6 +51,8 @@ app.post('/api/bookings', BookingController.addBooking);
 app.get('/api/bookings', BookingController.displayBookings);
 app.put('/api/bookings', BookingController.confirmBooking);
 app.delete('/api/bookings', BookingController.deleteBooking);
+app.get('/api/reviews', ReviewController.getAll);
+app.post('/api/reviews', ReviewController.postOne);
 // mongoose.connection('mongodb://localhost/')
 // const db = mongoose.connection;
 
