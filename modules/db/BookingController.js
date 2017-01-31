@@ -14,8 +14,8 @@ module.exports = {
           console.log('user-info for booking: ', doc);
           console.log('req.body:', req.body);
         new BookingSchema({
-          userFirstname: doc.firstname,
-          userLastname: doc.lastname,
+          userFirstname: doc[0].firstname,
+          userLastname: doc[0].lastname,
           isBooked: req.body.isBooked,
           trainerEmail: req.body.trainerEmail,
           service: req.body.service,

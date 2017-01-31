@@ -35,7 +35,7 @@ module.exports = {
       })
     }
 
-}//end of module.exports
+}
 
 
 

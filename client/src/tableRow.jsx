@@ -11,7 +11,6 @@ class TableRow extends React.Component {
 
     e.preventDefault();
     $.post('/api/bookings', {
-
       isBooked: true,
       trainerEmail: this.props.email,
       service: this.refs.service.value,
@@ -37,7 +36,7 @@ class TableRow extends React.Component {
             <div className="services-container">
               <ul className="services-list w-list-unstyled">
                 <li className="services-list-item">Name: {this.props.firstName} {this.props.lastName}</li>
-                <li className="services-list-item">Location:{this.props.location}</li>
+                <li className="services-list-item">Location: {this.props.location}</li>
                 <li className="services-list-item">{this.props.services}</li>
               </ul>
             </div>
@@ -47,7 +46,7 @@ class TableRow extends React.Component {
               <form onSubmit={this.handleBooking.bind(this)} className="booking-wrapper w-clearfix">
                 <input className="book-button-alignment signupbutton w-button" type="submit" value="Book"/>
                 <input className="booking-input green-focus w-input" placeholder="How Long?" type="text"  required ref='duration'/>
-                <input className="booking-input green-focus w-input" placeholder="Which Service?" type="text"required ref='service' />
+                <input className="booking-input green-focus w-input" placeholder="Which Service?" type="text" required ref='service' />
               </form>
             </div>
           </div>
