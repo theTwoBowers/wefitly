@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const TrainerModel = require('./modules/db/trainerMethods.js');
 const UserModel = require('./modules/db/userMethods.js');
 const UserController = require('./modules/db/UserController.js');
-const TrainerController = require('./modules/db/TrainerController.js');
+const TrainerController = require('./modules/db/trainerController.js');
 const BookingController = require('./modules/db/BookingController.js');
 
 mongoose.connect('mongodb://localhost:27017/wefitlytest');

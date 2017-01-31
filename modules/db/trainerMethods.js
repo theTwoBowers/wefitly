@@ -1,5 +1,5 @@
-const TrainerSchema = require('./TrainerSchema.js').TrainerSchema;
-const TrainerModel = require('./TrainerSchema.js').TrainerModel;
+const TrainerSchema = require('./trainerSchema.js').TrainerSchema;
+const TrainerModel = require('./trainerSchema.js').TrainerModel;
 const Q = require('q');
 const passwordHelpers = require('./passwordHelpers.js')
 
