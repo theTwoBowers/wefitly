@@ -11,6 +11,18 @@ import TrainerProfileEditor from './trainerProfile.jsx';
 class TrainerDash extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      bookings: []
+    };
+  }
+
+  componentWillMount() {
+    console.log('your bookings', this.state.bookings);
+    $.get('/api/bookings').done((data) => {
+      this.setState({
+        bookings: data
+      });
+    });
   }
 
   handleRequest(verb) {
@@ -54,13 +66,12 @@ class TrainerDash extends React.Component {
         
         <div className="dash-container w-col w-col-6" id="confirmed">
           <h1 id="pendingTitle" onClick={this.acceptRequest.bind(this)}>Confirmed Bookings</h1>
-          <BookingTable booking={this.props.bookings} RequestType={Confirmed} />
+          <BookingTable booking={this.state.bookings} RequestType={Confirmed} />
         </div>
 
         <div className="dash-container w-col-6" id="pending">
           <h1 id="pendingTitle">Pending Bookings</h1>
-          <BookingTable booking={this.props.bookings} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} denyRequest={this.denyRequest.bind(this)}/>
-
+          <BookingTable booking={this.state.bookings} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} denyRequest={this.denyRequest.bind(this)}/>
         </div>
       </div>
     );
