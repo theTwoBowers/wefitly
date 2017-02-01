@@ -2621,15 +2621,16 @@ textarea.w-select {
 }
 
 #accept {
-  background-color: #008000;
-  height: 65px;
-  width: 65px;
+  margin: 5px;
+  margin-right: 20px;
+  height: 55px;
+  width: 55px;
 }
 
-#deny {
-  background-color: #FF0000;
-  height: 65px;
-  width: 65px;
+#reject {
+  margin: 5px;
+  height: 55px;
+  width: 55px;
 }
 
 #confirmedBooking, #pendingBooking {
@@ -2644,4 +2645,10 @@ textarea.w-select {
 
 #pendingBooking {
   width: 90%;
+}
+
+#right {
+  white-space: nowrap;
+  float: right;
+  margin: 0px;
 }

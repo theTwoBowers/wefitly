@@ -4,7 +4,6 @@ const UserModel = require('./userSchema.js').UserModel;
 module.exports = {
 
   addBooking: function(req, res) {
-
     UserModel.find({username: req.session.email}).exec(function(err, doc) {
       console.log('inside findOne:', req.session.email);
       if (err) {
@@ -43,13 +42,26 @@ module.exports = {
   },
 
   confirmBooking: function(req, res) {
-    BookingSchema.findById(req.body.id, {$set: {isBooked: true}});
+    BookingSchema.findByIdAndUpdate(
+      req.body._id,
+      {$set: { isBooked: true } }
+    ).exec(function(err, booking) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log('Confirmed Booking id -', req.body._id);
+        res.end();
+      }
+    });
   },
 
   deleteBooking: function(req, res) {
-    BookingSchema.remove({_id: req.body.id}, function(err) {
+    BookingSchema.remove({_id: req.body._id}).exec(function(err, booking) {
       if (err) {
         console.error(err);
+      } else {
+        console.log('Deleted Booking id -', req.body._id);
+        res.end();
       }
     });
   }

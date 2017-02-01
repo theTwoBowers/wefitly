@@ -38,7 +38,6 @@ app.use(session({
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-
 app.post('/api/userSignup', UserController.signup);
 app.post('/api/userSignin', UserController.signin);
 app.get('/api/userSignin', UserController.getUser);

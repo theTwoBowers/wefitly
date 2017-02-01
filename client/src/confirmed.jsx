@@ -15,7 +15,6 @@ class Confirmed extends React.Component {
   // }
 
   render() {
-    console.log('-----bookingrow', this.props);
     return (
       <div id="confirmedBooking">
         <li className="testimonial-row" id="confirmedBooking">

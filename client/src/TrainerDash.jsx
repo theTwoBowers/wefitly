@@ -17,7 +17,6 @@ class TrainerDash extends React.Component {
   }
 
   componentWillMount() {
-    console.log('your bookings', this.state.bookings);
     $.get('/api/bookings').done((data) => {
       this.setState({
         bookings: data
@@ -25,34 +24,38 @@ class TrainerDash extends React.Component {
     });
   }
 
-  handleRequest(verb) {
+  acceptRequest(bookingId) {
     const props = this.props;
-    e.preventDefault();
 
     $.ajax({
       url: props.endpoint,
-      type: verb,
+      type: 'PUT',
       ContentType: 'application/json',
       data: {
-        _id: props.bookings._id
+        _id: bookingId
       }
     }).done(function(response) {
-      console.log('handled booking request');
+      console.log('Accepted booking request');
     }).fail(function(response) {
-      console.log('something wrong - booking request');
+      console.log('Failed to accept request');
     });
   }
 
-  acceptRequest(e) {
-    //handleRequest('PUT');
-    console.log('hi');
-    return 'yes';
-  }
+  rejectRequest(bookingId) {
+    const props = this.props;
 
-  denyRequest(e) {
-    //handleRequest('DELETE');
-    console.log('NOOOOOOO');
-    return 'no';
+    $.ajax({
+      url: props.endpoint,
+      type: 'DELETE',
+      ContentType: 'application/json',
+      data: {
+        _id: bookingId
+      }
+    }).done(function(response) {
+      console.log('Rejected booking request');
+    }).fail(function(response) {
+      console.log('Failed to reject request');
+    });
   }
 
   render() {
@@ -71,7 +74,7 @@ class TrainerDash extends React.Component {
 
         <div className="dash-container w-col-6" id="pending">
           <h1 id="pendingTitle">Pending Bookings</h1>
-          <BookingTable booking={this.state.bookings} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} denyRequest={this.denyRequest.bind(this)}/>
+          <BookingTable booking={this.state.bookings} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} rejectRequest={this.rejectRequest.bind(this)}/>
         </div>
       </div>
     );
