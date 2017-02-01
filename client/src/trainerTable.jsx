@@ -9,11 +9,35 @@ class TrainerTable extends React.Component {
     super(props);
     this.state = {
       entries: [],
+      location: undefined,
     };
   }
 
+  getFiltered() {
+    var outer = this;
+    $.ajax({
+      url: '/api/userSignin',
+      method: 'GET',
+      ContentType: 'application/json'
+    }).done(function (response) {
+      console.log('during mount', response);
+      $.ajax({
+        url: '/api/filterTrainers',
+        method: 'GET',
+        ContentType: 'application/json',
+        data: {
+          location: response,
+        }
+      })
+      .done(function (respo) {
+        console.log('respo', respo);
+        outer.setState({entries: respo});
+      });  
+    });
+  }
+
   componentDidMount() {
-    this.getAll();
+    this.getFiltered();
   }
 
   getTargetValue(e) {
@@ -77,7 +101,7 @@ class TrainerTable extends React.Component {
         Object.entries(en.services).forEach((service, index)=>{
           if (service[1] === true) {
 
-             if (service[0] === '1on1') {
+            if (service[0] === '1on1') {
               service[0] = '1 on 1 personal training';
             } else if (service[0] === 'dietcons') {
               service[0] = 'Diet consulting';
@@ -87,13 +111,13 @@ class TrainerTable extends React.Component {
               service[0] = 'Remote Training';
             }
 
-             if (index === length) {
+            if (index === length) {
               services += service[0];
             } else {
               services += service[0] + '  /  ';
             }
 
-           }
+          }
         });
       }
       elements.push(<TableRow
