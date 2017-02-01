@@ -39,16 +39,10 @@ class App extends React.Component {
   // }
 
   componentDidMount() {
-    const currentBookings = this.state.bookings;
-    const currentUser = this.state.user;
     console.log('your bookings', this.state.bookings);
     $.get('/api/bookings').done((data) => {
-      data.forEach(function(booking) {
-        currentBookings.push(booking);
-      });
-
       this.setState({
-        bookings: currentBookings
+        bookings: data
       });
     });
   }
