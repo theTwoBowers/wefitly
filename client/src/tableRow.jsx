@@ -21,6 +21,7 @@ class TableRow extends React.Component {
     this.refs.service.value = '';
     this.refs.duration.value = '';
   }   
+  
 
   render() {
     return ( 
