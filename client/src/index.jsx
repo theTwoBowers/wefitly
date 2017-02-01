@@ -13,10 +13,6 @@ import _ from 'lodash';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      bookings: []
-    };
   }
 
   onUserSignUp(postRequestData) {
@@ -29,22 +25,6 @@ class App extends React.Component {
 
   onTrainerSignin(postRequestData) {
     window.location.href = '#/trainerdash';
-  }
-
-  // rejectBooking(booking) {
-  //   _.remove(this.state.bookings, booking => booking.service === booking);
-  //   this.setState({
-  //     bookings: this.state.bookings
-  //   });
-  // }
-
-  componentDidMount() {
-    $.get('/api/bookings').done((data) => {
-      console.log('index bookings', data);
-      this.setState({
-        bookings: data
-      });
-    });
   }
 
   render() {
@@ -65,7 +45,7 @@ class App extends React.Component {
         )} />
         <Route path="/trainerprofile" component={TrainerProfile} />
         <Route path="/trainerdash" component={() => (
-          <TrainerDash endpoint="/api/bookings" bookings={this.state.bookings} editProfile={this.onTrainerSignUp.bind(this)} />
+          <TrainerDash endpoint="/api/bookings" editProfile={this.onTrainerSignUp.bind(this)} />
         )} />
         <Route path='/dash' component={UserDash} />
         <Route path="/" component={Home} />

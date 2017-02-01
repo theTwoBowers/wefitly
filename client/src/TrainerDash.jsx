@@ -12,21 +12,46 @@ class TrainerDash extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookings: []
+      confirmed: [],
+      pending: []
     };
   }
 
-  componentWillMount() {
-    $.get('/api/bookings').done((data) => {
+  updateBookings() {
+    $.get('/api/bookings').done((bookings) => {
+      var confirmedBookings = [];
+      var pendingBookings = [];
+      bookings.forEach(function(booking) {
+        if (booking.isBooked) {
+          confirmedBookings.push(booking);
+        } else {
+          pendingBookings.push(booking);
+        }
+      });
       this.setState({
-        bookings: data
+        confirmed: confirmedBookings,
+        pending: pendingBookings
       });
     });
+  }
+   
+  componentWillMount() {
+    this.updateBookings();
+  }
+
+  componentDidUpdate(props, state) {
+    var prevCState = JSON.stringify(state.confirmed);
+    var newCState = JSON.stringify(this.state.confirmed);
+    var prevPState = JSON.stringify(state.pending);
+    var newPState = JSON.stringify(this.state.pending);
+    if (prevCState !== newCState || prevPState !== newPState) {
+      this.updateBookings();
+    }
   }
 
   acceptRequest(bookingId) {
     const props = this.props;
-
+    let outer = this;
     $.ajax({
       url: props.endpoint,
       type: 'PUT',
@@ -35,6 +60,7 @@ class TrainerDash extends React.Component {
         _id: bookingId
       }
     }).done(function(response) {
+      outer.updateBookings();
       console.log('Accepted booking request');
     }).fail(function(response) {
       console.log('Failed to accept request');
@@ -43,7 +69,7 @@ class TrainerDash extends React.Component {
 
   rejectRequest(bookingId) {
     const props = this.props;
-
+    let outer = this;
     $.ajax({
       url: props.endpoint,
       type: 'DELETE',
@@ -52,6 +78,7 @@ class TrainerDash extends React.Component {
         _id: bookingId
       }
     }).done(function(response) {
+      outer.updateBookings();
       console.log('Rejected booking request');
     }).fail(function(response) {
       console.log('Failed to reject request');
@@ -69,12 +96,12 @@ class TrainerDash extends React.Component {
         
         <div className="dash-container w-col w-col-6" id="confirmed">
           <h1 id="pendingTitle" onClick={this.acceptRequest.bind(this)}>Confirmed Bookings</h1>
-          <BookingTable booking={this.state.bookings} RequestType={Confirmed} />
+          <BookingTable booking={this.state.confirmed} RequestType={Confirmed} />
         </div>
 
         <div className="dash-container w-col-6" id="pending">
           <h1 id="pendingTitle">Pending Bookings</h1>
-          <BookingTable booking={this.state.bookings} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} rejectRequest={this.rejectRequest.bind(this)}/>
+          <BookingTable booking={this.state.pending} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} rejectRequest={this.rejectRequest.bind(this)}/>
         </div>
       </div>
     );
