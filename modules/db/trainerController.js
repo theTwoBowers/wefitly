@@ -68,7 +68,7 @@ module.exports = {
           },
           rate: req.body.rate
         };
-        console.log(updateObj);
+
         TrainerModel.updateTrainer(req.session.email, updateObj, (err)=>{
           if (err) {
             res.sendStatus(504);
