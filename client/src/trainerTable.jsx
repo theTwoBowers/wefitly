@@ -96,7 +96,6 @@ class TrainerTable extends React.Component {
            }
         });
       }
-      console.log('+++++++++++', en);
       elements.push(<TableRow
         key= {index}
         pic={en.profilepic}
