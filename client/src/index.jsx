@@ -31,12 +31,12 @@ class App extends React.Component {
     window.location.href = '#/trainerdash';
   }
 
-  rejectBooking(booking) {
-    _.remove(this.state.bookings, booking => booking.service === booking);
-    this.setState({
-      bookings: this.state.bookings
-    });
-  }
+  // rejectBooking(booking) {
+  //   _.remove(this.state.bookings, booking => booking.service === booking);
+  //   this.setState({
+  //     bookings: this.state.bookings
+  //   });
+  // }
 
   componentDidMount() {
     const currentBookings = this.state.bookings;
@@ -71,7 +71,7 @@ class App extends React.Component {
         )} />
         <Route path="/trainerprofile" component={TrainerProfile} />
         <Route path="/trainerdash" component={() => (
-          <TrainerDash bookings={this.state.bookings} rejectBooking={this.rejectBooking.bind(this)}/>
+          <TrainerDash endpoint="/api/bookings" bookings={this.state.bookings} editProfile={this.onTrainerSignUp.bind(this)} />
         )} />
         <Route path='/dash' component={UserDash} />
         <Route path="/" component={Home} />

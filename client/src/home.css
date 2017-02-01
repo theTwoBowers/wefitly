@@ -2620,9 +2620,28 @@ textarea.w-select {
   text-align: center;
 }
 
-#singleBooking {
+#accept {
+  background-color: #008000;
+  height: 65px;
+  width: 65px;
+}
+
+#deny {
+  background-color: #FF0000;
+  height: 65px;
+  width: 65px;
+}
+
+#confirmedBooking, #pendingBooking {
   margin-left: auto;
   margin-right: auto;
   height: 100px;
-  width: 60%;
+}
+
+#confirmedBooking {
+  width: 80%;
+}
+
+#pendingBooking {
+  width: 90%;
 }
