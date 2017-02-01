@@ -50,7 +50,7 @@ class Signup extends React.Component {
           <form className="profile-editor-alignment signinform w-clearfix" onSubmit={this.onSubmit.bind(this)} >
             {/*<input onChange={this.handleFormChange} className="green-focus signup-alignment w-input" type='text' name='firstname' placeholder='First Name' value={this.state.firstname || ''}/>
             <input className="green-focus signup-alignment w-input" onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.state.lastname || ''}/>
-           */} <input onChange={this.handleFormChange} className="green-focus signup-alignment w-input" placeholder="Image url" name='pic' />
+           */} <input onChange={this.handleFormChange} className="green-focus signup-alignment w-input" placeholder="Image url" name='pic' type='text' />
             <input className="green-focus signup-alignment w-input"onChange={this.handleFormChange} type='text' name='bio' placeholder='Tell us about yourself' value={this.state.bio || ''}></input>
             <div className="w-checkbox">
               <input className="green-focus signup-alignment w-input" onChange={this.handleFormChange} type='checkbox' name='oneonone' />

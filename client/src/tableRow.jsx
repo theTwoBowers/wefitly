@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import css from './home.css'
+import css from './home.css';
 
 class TableRow extends React.Component {
   constructor(props) {
@@ -16,18 +16,18 @@ class TableRow extends React.Component {
       service: this.refs.service.value,
       duration: this.refs.duration.value
     }).done((results) => {
-      console.log('success')
-    })
+      console.log('success');
+    });
     this.refs.service.value = '';
     this.refs.duration.value = '';
-  }
+  }   
 
- render() {
-  return(
+  render() {
+    return ( 
     <div>
       <li className="testimonial-row">
         <div className="row-container w-clearfix">
-          <div className="row-column w-clearfix"><img className="test-image" src="http://1.bp.blogspot.com/_Zde-OxOYou4/TFb7R25xTbI/AAAAAAAAADc/uXByt3U718c/s1600/arnold_schwarzenegger.jpg" />
+          <div className="row-column w-clearfix"><img className="test-image" src={this.props.pic} />
           </div>
           <div className="extended-row-column w-clearfix">
             <div className="services-container w-clearfix">
@@ -45,7 +45,7 @@ class TableRow extends React.Component {
             <div className="booking-wrapper w-form">
               <form onSubmit={this.handleBooking.bind(this)} className="booking-wrapper w-clearfix">
                 <input className="book-button-alignment signupbutton w-button" type="submit" value="Book"/>
-                <input className="booking-input green-focus w-input" placeholder="How Long?" type="text"  required ref='duration'/>
+                <input className="booking-input green-focus w-input" placeholder="How Long?" type="text" required ref='duration'/>
                 <input className="booking-input green-focus w-input" placeholder="Which Service?" type="text" required ref='service' />
               </form>
             </div>
@@ -53,8 +53,8 @@ class TableRow extends React.Component {
         </div>
       </li>
     </div>
-  );
-}
+    );
+  }
 }
 
 export default TableRow;
