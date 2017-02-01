@@ -120,6 +120,11 @@ module.exports = {
     } else {
       res.sendStatus(401);
     }
+  },
+
+  logout: function(req, res) {
+    req.session.destroy();
+    res.redirect('/');
   }
 };
 
