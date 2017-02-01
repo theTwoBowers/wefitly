@@ -46,7 +46,6 @@ class TrainerDash extends React.Component {
   render() {
     return (
       <div className="dash-body">
-
         <div className="w-form">
           <form className="update-profile-wrapper w-clearfix" id="email-form">
             <input className="signupbutton w-button" type="submit" value="Update Your Profile" onClick={this.props.editProfile} />
@@ -61,6 +60,7 @@ class TrainerDash extends React.Component {
         <div className="dash-container w-col-6" id="pending">
           <h1 id="pendingTitle">Pending Bookings</h1>
           <BookingTable booking={this.props.bookings} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} denyRequest={this.denyRequest.bind(this)}/>
+
         </div>
       </div>
     );

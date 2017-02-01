@@ -1,10 +1,10 @@
 import React from 'react';
-import css from './home.css'
+import css from './home.css';
 
 class Home extends React.Component {
   render () {
-    return(
-      <div>
+    return (
+      <div> 
       <div className="navbar w-nav" data-animation="default" data-collapse="medium" data-duration="400">
           <div className="navbar w-container">
             <nav className="w-nav-menu" role="navigation"><a className="navlink w-nav-link" href="#/trainersignin">Trainer Sign In</a><a className="navlink w-nav-link" href="#/usersignin">Warrior Sign In</a><a className="navlink w-nav-link" href="#">Contact</a>
