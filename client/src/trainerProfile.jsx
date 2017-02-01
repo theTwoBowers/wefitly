@@ -1,23 +1,23 @@
 import React from 'react';
 import $ from 'jquery';
-import ProfilePictureEditor from "./ProfilePictureEditor.jsx"
+import ProfilePictureEditor from './ProfilePictureEditor.jsx';
 
 class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
 
-    }
+    };
     this.handleFormChange = this.handleFormChange.bind(this);
 
   }
 
-  handleFormChange(e){
-    const $ele = $(e.target)
-    if ($ele.attr('type')==='checkbox'){
-      this.setState({[$ele.attr('name')]:$ele.is(':checked')});
-    } else if ($ele.attr('type') === 'text'){
-      this.setState({[$ele.attr('name')]:$ele.val()});
+  handleFormChange(e) {
+    const $ele = $(e.target);
+    if ($ele.attr('type') === 'checkbox') {
+      this.setState({[$ele.attr('name')]: $ele.is(':checked')});
+    } else if ($ele.attr('type') === 'text') {
+      this.setState({[$ele.attr('name')]: $ele.val()});
     }
 
   }
@@ -26,21 +26,21 @@ class Signup extends React.Component {
     e.preventDefault();
     console.log('transmitting data');
     $.ajax({
-      url         : '/api/updateTrainer',
-      type        : 'POST',
-      ContentType :'application/json',
-      data        : this.state
-    }).done(function(response){
+      url: '/api/updateTrainer',
+      type: 'POST',
+      ContentType: 'application/json',
+      data: this.state
+    }).done(function(response) {
       console.log('profile data recieved');
-      window.location.href = '#/trainerdash'
+      window.location.href = '#/trainerdash';
       console.log('after dash');
-    }).fail(function(response){
+    }).fail(function(response) {
       console.log('profile transmission failure');
-    })
+    });
   }
 
   render() {
-    return(
+    return (
     <div className="profiel-body">
       <div className="heading-div">
         <h1 className="profile-editor-heading">Edit Your Profile</h1>
@@ -48,10 +48,10 @@ class Signup extends React.Component {
       <div className="w-container">
         <div className="profile-editor-wrapper w-form">
           <form className="profile-editor-alignment signinform w-clearfix" onSubmit={this.onSubmit.bind(this)} >
-            <input onChange={this.handleFormChange} className="green-focus signup-alignment w-input"  type='text' name='firstname'  placeholder='First Name' value={this.state.firstname || ''}/>
+            {/*<input onChange={this.handleFormChange} className="green-focus signup-alignment w-input" type='text' name='firstname' placeholder='First Name' value={this.state.firstname || ''}/>
             <input className="green-focus signup-alignment w-input" onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.state.lastname || ''}/>
-            <input onChange={this.handleFormChange} className="green-focus signup-alignment w-input" placeholder="Image url" name='pic' />
-            <input className="green-focus signup-alignment w-input"onChange={this.handleFormChange} type='text' name='bio'  placeholder='Tell us about yourself' value={this.state.bio || ''}></input>
+           */} <input onChange={this.handleFormChange} className="green-focus signup-alignment w-input" placeholder="Image url" name='pic' />
+            <input className="green-focus signup-alignment w-input"onChange={this.handleFormChange} type='text' name='bio' placeholder='Tell us about yourself' value={this.state.bio || ''}></input>
             <div className="w-checkbox">
               <input className="green-focus signup-alignment w-input" onChange={this.handleFormChange} type='checkbox' name='oneonone' />
               <label className="w-form-label">1-on-1 Personal Training</label>
