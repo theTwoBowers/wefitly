@@ -10,7 +10,6 @@ module.exports = {
       if (err) {
         res.sendStatus(501);
       } else {
-
         console.log('user-info for booking: ', doc);
         console.log('req.body:', req.body);
         new BookingSchema({
