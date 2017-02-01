@@ -43,7 +43,13 @@ module.exports = {
   },
 
   confirmBooking: function(req, res) {
-    BookingSchema.findById(req.body.id, {$set: {isBooked: true}});
+    BookingSchema.findById(req.body.id, {$set: {isBooked: true}}).exec(function(err, booking) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log('yay');
+      }
+    });
   },
 
   deleteBooking: function(req, res) {

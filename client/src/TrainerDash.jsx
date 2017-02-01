@@ -44,15 +44,30 @@ class TrainerDash extends React.Component {
   }
 
   acceptRequest(e) {
-    //handleRequest('PUT');
-    console.log('hi');
-    return 'yes';
+    const props = this.props;
+    e.preventDefault();
+
+    $.ajax({
+      url: props.endpoint,
+      type: 'PUT',
+      ContentType: 'application/json',
+      data: {
+        _id: props.bookings._id
+      }
+    }).done(function(response) {
+      console.log('handled booking request');
+    }).fail(function(response) {
+      console.log('something wrong - booking request');
+    });
+    // this.handleRequest('PUT');
+    // console.log('hi');
+    // return 'yes';
   }
 
-  denyRequest(e) {
-    //handleRequest('DELETE');
+  rejectRequest(e) {
+    this.handleRequest('DELETE');
     console.log('NOOOOOOO');
-    return 'no';
+    // return 'no';
   }
 
   render() {
@@ -71,7 +86,7 @@ class TrainerDash extends React.Component {
 
         <div className="dash-container w-col-6" id="pending">
           <h1 id="pendingTitle">Pending Bookings</h1>
-          <BookingTable booking={this.state.bookings} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} denyRequest={this.denyRequest.bind(this)}/>
+          <BookingTable booking={this.state.bookings} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} rejectRequest={this.rejectRequest.bind(this)}/>
         </div>
       </div>
     );

@@ -15,7 +15,6 @@ class Pending extends React.Component {
   // }
 
   render() {
-    console.log('-----bookingrow', this.props);
     return (
       <div id="pendingBooking">
         <li className="testimonial-row" id="pendingBooking">
@@ -38,9 +37,9 @@ class Pending extends React.Component {
               <h4>Date / Time</h4>
               <div>Feb. 12 - 10:30am</div>
             </div>
-            <div className="w-col w-col-3">
-              <button id="accept">YES</button>
-              <button id="deny">NO</button>
+            <div id="right">
+              <img id="accept" src="./assets/greencheck.png" onClick={this.props.acceptRequest}/>
+              <img id="reject" src="./assets/redx.png" onClick={this.props.rejectRequest}/>
             </div>
           </div>
         </li>
