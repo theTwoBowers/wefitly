@@ -17,7 +17,6 @@ class TrainerDash extends React.Component {
   }
 
   componentWillMount() {
-    console.log('your bookings', this.state.bookings);
     $.get('/api/bookings').done((data) => {
       this.setState({
         bookings: data
@@ -25,49 +24,38 @@ class TrainerDash extends React.Component {
     });
   }
 
-  handleRequest(verb) {
+  acceptRequest(bookingId) {
     const props = this.props;
-    e.preventDefault();
-
-    $.ajax({
-      url: props.endpoint,
-      type: verb,
-      ContentType: 'application/json',
-      data: {
-        _id: props.bookings._id
-      }
-    }).done(function(response) {
-      console.log('handled booking request');
-    }).fail(function(response) {
-      console.log('something wrong - booking request');
-    });
-  }
-
-  acceptRequest(e) {
-    const props = this.props;
-    e.preventDefault();
 
     $.ajax({
       url: props.endpoint,
       type: 'PUT',
       ContentType: 'application/json',
       data: {
-        _id: props.bookings._id
+        _id: bookingId
       }
     }).done(function(response) {
-      console.log('handled booking request');
+      console.log('Accepted booking request');
     }).fail(function(response) {
-      console.log('something wrong - booking request');
+      console.log('Failed to accept request');
     });
-    // this.handleRequest('PUT');
-    // console.log('hi');
-    // return 'yes';
   }
 
-  rejectRequest(e) {
-    this.handleRequest('DELETE');
-    console.log('NOOOOOOO');
-    // return 'no';
+  rejectRequest(bookingId) {
+    const props = this.props;
+
+    $.ajax({
+      url: props.endpoint,
+      type: 'DELETE',
+      ContentType: 'application/json',
+      data: {
+        _id: bookingId
+      }
+    }).done(function(response) {
+      console.log('Rejected booking request');
+    }).fail(function(response) {
+      console.log('Failed to reject request');
+    });
   }
 
   render() {

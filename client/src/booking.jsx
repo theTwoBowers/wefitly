@@ -10,7 +10,6 @@ const BookingTable = ({booking, acceptRequest, rejectRequest, RequestType}) => (
   </div>
 );
 
-
 export default BookingTable;
 //reject Booking implementation to be added later
 // rejectBooking={rejectBooking}

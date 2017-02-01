@@ -39,8 +39,8 @@ class App extends React.Component {
   // }
 
   componentDidMount() {
-    console.log('your bookings', this.state.bookings);
     $.get('/api/bookings').done((data) => {
+      console.log('index bookings', data);
       this.setState({
         bookings: data
       });

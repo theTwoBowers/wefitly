@@ -15,6 +15,7 @@ class Pending extends React.Component {
   // }
 
   render() {
+    console.log('-----bookingrow', this.props.bookingId);    
     return (
       <div id="pendingBooking">
         <li className="testimonial-row" id="pendingBooking">
@@ -38,8 +39,8 @@ class Pending extends React.Component {
               <div>Feb. 12 - 10:30am</div>
             </div>
             <div id="right">
-              <img id="accept" src="./assets/greencheck.png" onClick={this.props.acceptRequest}/>
-              <img id="reject" src="./assets/redx.png" onClick={this.props.rejectRequest}/>
+              <img id="accept" src="./assets/greencheck.png" onClick={() => this.props.acceptRequest(this.props.bookingId)}/>
+              <img id="reject" src="./assets/redx.png" onClick={() => this.props.rejectRequest(this.props.bookingId)}/>
             </div>
           </div>
         </li>
