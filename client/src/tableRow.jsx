@@ -32,7 +32,7 @@ class TableRow extends React.Component {
           </div>
           <div className="extended-row-column w-clearfix">
             <div className="services-container w-clearfix">
-              <p className="dashboard-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interduposuere.</p>
+              <p className="dashboard-paragraph">Bio: {this.props.bio}</p>
             </div>
             <div className="services-container">
               <ul className="services-list w-list-unstyled">
