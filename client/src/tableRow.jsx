@@ -17,6 +17,7 @@ class TableRow extends React.Component {
       service: this.refs.service.value,
       duration: this.refs.duration.value
     }).done((results) => {
+      this.props.submitRequest();
     });
     this.refs.service.value = '';
     this.refs.duration.value = '';
@@ -48,6 +49,7 @@ class TableRow extends React.Component {
                 <input className="book-button-alignment signupbutton w-button" type="submit" value="Book"/>
                 <input className="booking-input green-focus w-input" placeholder="How Long?" type="text" required ref='duration'/>
                 <input className="booking-input green-focus w-input" placeholder="Which Service?" type="text" required ref='service' />
+                <input type="date" />
               </form>
             </div>
           </div>

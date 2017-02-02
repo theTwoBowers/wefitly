@@ -13,7 +13,8 @@ class UserDash extends React.Component {
     super(props);
     this.state = {
       confirmed: [],
-      pending: []
+      pending: [],
+      update: false
     };
   }
      
@@ -34,9 +35,42 @@ class UserDash extends React.Component {
       });
     });
   }
-   
-  componentDidMount() {
+
+  componentWillMount() {
     this.updateBookings();
+  }
+
+  componentDidUpdate(props, state) {
+    var prevUState = JSON.stringify(state.update);
+    var newUState = JSON.stringify(this.state.update);
+    if (prevUState !== newUState) {
+      this.updateBookings();
+    }
+  }  
+ 
+  submitRequest() {
+    this.setState({
+      update: !this.state.update
+    });
+  }
+
+  rejectRequest(bookingId) {
+    const props = this.props;
+    console.log(props);
+    let outer = this;
+    $.ajax({
+      url: props.endpoint,
+      type: 'DELETE',
+      ContentType: 'application/json',
+      data: {
+        _id: bookingId
+      }
+    }).done(function(response) {
+      outer.updateBookings();
+      console.log('Deleted booking request');
+    }).fail(function(response) {
+      console.log('Failed to delete request');
+    });
   }
 
   render() {
@@ -45,7 +79,7 @@ class UserDash extends React.Component {
         <div className="dash-body">
           <div className="dash-container w-container">
             <h1>Your Dashboard</h1>
-            <TrainerTable />
+            <TrainerTable submitRequest={this.submitRequest.bind(this)} />
           </div>
         </div>
 
@@ -57,7 +91,7 @@ class UserDash extends React.Component {
 
         <div className="dash-container w-col-6" id="pending">
           <center><h1 id="pendingTitle">Pending Bookings</h1></center>
-          <BookingTable booking={this.state.pending} RequestType={Pending} type={'user'} />   
+          <BookingTable booking={this.state.pending} RequestType={Pending} type={'user'} rejectRequest={this.rejectRequest.bind(this)} />   
         </div> 
       </div>
     ); 
