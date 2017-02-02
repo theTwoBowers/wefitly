@@ -41,6 +41,16 @@ module.exports = {
     });
   },
 
+  displayUserBookings: function(req, res) {
+    BookingSchema.find({userEmail: req.session.email}).exec(function(err, booking) {
+      if (err) {
+        console.error(err);
+      } else {
+        res.send(booking);
+      }
+    });
+  },
+
   confirmBooking: function(req, res) {
     BookingSchema.findByIdAndUpdate(
       req.body._id,
