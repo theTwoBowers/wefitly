@@ -50,6 +50,7 @@ app.get('/api/getprofile', TrainerController.getProfile);
 app.post('/api/bookings', BookingController.addBooking);
 app.get('/api/bookings', BookingController.displayBookings);
 app.put('/api/bookings', BookingController.confirmBooking);
+app.get('/api/userBookings', BookingController.displayUserBookings);
 app.delete('/api/bookings', BookingController.deleteBooking);
 app.get('/api/reviews', ReviewController.getAll);
 app.post('/api/reviews', ReviewController.postOne);
