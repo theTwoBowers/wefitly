@@ -43,10 +43,12 @@ module.exports = {
   },
 
   displayUserBookings: function(req, res) {
+    
     BookingSchema.find({userEmail: req.session.email}).exec(function(err, booking) {
       if (err) {
         console.error(err);
       } else {
+        console.log('display booking------------', booking);
         res.send(booking);
       }
     });
