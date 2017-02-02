@@ -6,13 +6,21 @@ class Confirmed extends React.Component {
     super(props);
   }
 
-  // renderActions() {
-  //   return (
-  //      <td>
-  //       <button onClick={this.props.rejectBooking.bind(this, this.props.service)}>Reject</button>
-  //     </td>
-  //   );
-  // }
+  componentWillMount() {
+    if (this.props.user) {
+      this.setState({
+        userType: 'Trainer',
+        name: this.props.trainerName,
+        visibility: {display: 'none'}
+      });
+    } else {
+      this.setState({
+        userType: 'Client',
+        name: this.props.userFirstname + ' ' + this.props.userLastname,
+        visibility: {}
+      });
+    }
+  }
 
   render() {
     return (
@@ -21,8 +29,8 @@ class Confirmed extends React.Component {
           <div className="w-row">
             <div className="booking-column w-col w-col-3">
               <div className="booking-row-title">
-                <h4>Client</h4>
-                <div>{this.props.userFirstname + ' ' + this.props.userLastname}</div>
+                <h4>{this.state.userType}</h4>
+                <div>{this.state.name}</div>
               </div>
             </div>
             <div className="w-col w-col-3">

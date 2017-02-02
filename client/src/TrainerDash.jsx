@@ -93,12 +93,12 @@ class TrainerDash extends React.Component {
         </div>
         
         <div className="dash-container w-col w-col-6" id="confirmed">
-          <h1 id="pendingTitle" onClick={this.acceptRequest.bind(this)}>Confirmed Bookings</h1>
+          <h1 id="center" onClick={this.acceptRequest.bind(this)}>Confirmed Bookings</h1>
           <BookingTable booking={this.state.confirmed} RequestType={Confirmed} />
         </div>
 
         <div className="dash-container w-col-6" id="pending">
-          <h1 id="pendingTitle">Pending Bookings</h1>
+          <h1 id="center">Pending Bookings</h1>
           <BookingTable booking={this.state.pending} RequestType={Pending} acceptRequest={this.acceptRequest.bind(this)} rejectRequest={this.rejectRequest.bind(this)}/>
         </div>
       </div>

@@ -4,30 +4,22 @@ import css from './home.css';
 class Pending extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: ''
-    };
   }
 
-  // renderActions() {
-  //   return (
-  //      <td>
-  //       <button onClick={this.props.rejectBooking.bind(this, this.props.service)}>Reject</button>
-  //     </td>
-  //   );
-  // }
   componentWillMount() {
     if (this.props.user) {
       this.setState({
         userType: 'Trainer',
         name: this.props.trainerName,
-        visibility: {display: 'none'},
+        style: {width: '85%'},
+        visibility: {display: 'none'}
       });
     } else {
       this.setState({
         userType: 'Client',
         name: this.props.userFirstname + ' ' + this.props.userLastname,
-        visibility: {},
+        style: {},
+        visibility: {}
       });
     }
   }
@@ -35,7 +27,7 @@ class Pending extends React.Component {
   render() {
     return (
       <div id="pendingBooking">
-        <li className="testimonial-row" id="pendingBooking">
+        <li className="testimonial-row" id="pendingBooking" style={this.state.style}>
           <div className="w-row">
             <div className="booking-column w-col w-col-2">
               <div className="booking-row-title">
