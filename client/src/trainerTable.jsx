@@ -126,6 +126,7 @@ class TrainerTable extends React.Component {
         location={en.location}
         email={en.username}
         bio={en.bio}
+        rate={en.rate}
         submitRequest={this.props.submitRequest}
         services={services}/>);
     });

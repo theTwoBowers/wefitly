@@ -27,7 +27,7 @@ TrainerModel.findAllTrainers = (next) => {
 };
 
 TrainerModel.filterTrainers = (location, next) => {
-  findAllTrainers({ location: location }, { username: 1, profilepic: 1, bio: 1, location: 1, services: 1, firstname: 1, lastname: 1 } )
+  findAllTrainers({ location: location }, { username: 1, profilepic: 1, bio: 1, location: 1, services: 1, firstname: 1, lastname: 1, rate: 1 } )
   .then((results) => {
     return next(results);
   })

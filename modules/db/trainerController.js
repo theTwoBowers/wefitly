@@ -55,13 +55,13 @@ module.exports = {
           // lastname: req.body.lastname,
           profilepic: req.body.pic,
           bio: req.body.bio,
+          rate: req.body.rate,
           services: {
             '1on1': req.body.oneonone ? true : false,
             'dietcons': req.body.dietcons ? true : false,
             'group': req.body.group ? true : false,
             'remote': req.body.remote ? true : false,
-          },
-          rate: req.body.rate
+          }
         };
 
         TrainerModel.updateTrainer(req.session.email, updateObj, (err)=>{
@@ -92,7 +92,7 @@ module.exports = {
                 lastname: doc.lastname,
                 bio: doc.bio,
                 profilepic: doc.profilepic,
-                hourlyrate: doc.hourlyrate
+                rate: doc.rate
               };
  
               if (doc.services) {
