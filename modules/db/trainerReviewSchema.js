@@ -1,13 +1,11 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
 var TrainerReviewSchema = new Schema({
-  trainerid: Number,
+  name: String,
   review: String,
-  rating: String,
-  reviewid: Number,
-  userid: Number
+  rating: Number,
+  trainer: String
 });
 
 module.exports = mongoose.model('TrainerReview', TrainerReviewSchema);

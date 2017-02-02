@@ -2017,6 +2017,7 @@ textarea.w-select {
   display: none !important;
 }
 
+
 .banner {
   display: block;
   height: 599px;
@@ -2026,8 +2027,9 @@ textarea.w-select {
   padding-top: 91px;
   padding-bottom: 1px;
   background-color: transparent;
-  background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('https://static.pexels.com/photos/4097/city-cars-traffic-lights.jpeg');
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('https://static.pexels.com/photos/4097/city-cars-traffic-lights.jpeg');
+  background-image: url('https://static.pexels.com/photos/4097/city-cars-traffic-lights.jpeg'), url('https://static.pexels.com/photos/4097/city-cars-traffic-lights.jpeg');
+  background-position: 0px 0px, 0px 0px;
+  background-size: cover, 125px;
 }
 
 .banner.user {
@@ -2140,8 +2142,12 @@ textarea.w-select {
 }
 
 .signupbutton {
-  width: 167px;
-  margin-top: 14px;
+  display: block;
+  width: 159px;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-left: auto;
+  float: left;
   border-radius: 16px;
   background-color: rgba(78, 236, 56, .67);
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, .34);
@@ -2154,6 +2160,26 @@ textarea.w-select {
 
 .signupbutton:active {
   background-color: #4eec38;
+}
+
+.signupbutton.button-alignment {
+  margin-top: 15px;
+  margin-left: 110px;
+  float: none;
+}
+
+.signupbutton.update-button-alignment {
+  margin-left: 90px;
+  float: left;
+}
+
+.signupbutton.book-button-alignment {
+  float: left;
+}
+
+.signupbutton.profile-button-alignment {
+  margin-top: 15px;
+  margin-left: 28px;
 }
 
 .navbar {
@@ -2226,9 +2252,17 @@ textarea.w-select {
 
 .signinform {
   display: block;
-  width: 329px;
+  width: 333px;
   margin-right: auto;
   margin-left: auto;
+}
+
+.signinform.profile-editor-alignment {
+  margin-left: 336px;
+}
+
+.dash-container {
+  margin-bottom: 36px;
 }
 
 .dash-body {
@@ -2311,7 +2345,7 @@ textarea.w-select {
 .row-column {
   display: inline-block;
   width: 15%;
-  height: 100%;
+  height: 75%;
   padding: 12px;
 }
 
@@ -2343,12 +2377,17 @@ textarea.w-select {
 }
 
 .testimonial-row {
-  height: 192px;
+  height: 200px;
   margin: 25px;
-  padding: 19px;
+  padding: 16px;
   background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, .23), rgba(0, 0, 0, .23));
   background-image: linear-gradient(180deg, rgba(0, 0, 0, .23), rgba(0, 0, 0, .23));
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, .7);
+  text-align: center;
+}
+
+.testimonial-row:hover {
+  box-shadow: 0 0 6px 0 rgba(78, 236, 56, .67);
 }
 
 .trainer-image-column {
@@ -2424,7 +2463,7 @@ textarea.w-select {
 
 .extended-row-column {
   width: 85%;
-  height: 100%;
+  height: 75%;
   padding: 10px;
   float: right;
 }
@@ -2432,7 +2471,7 @@ textarea.w-select {
 .services-container {
   display: inline-block;
   width: 50%;
-  height: 100%;
+  height: 50%;
   padding: 7px;
   float: left;
 }
@@ -2442,11 +2481,14 @@ textarea.w-select {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 25%;
+  height: 50%;
 }
 
 .dashboard-paragraph {
+  display: block;
+  height: auto;
   padding: 0px;
+  float: left;
   line-height: 20px;
   text-align: left;
 }
@@ -2456,16 +2498,31 @@ textarea.w-select {
   text-align: left;
 }
 
+.bio-input.green-focus.signup-alignment {
+  float: none;
+}
+
 .profiel-body {
   margin-top: 93px;
 }
 
 .profile-editor-wrapper {
   margin-top: 27px;
+  margin-right: 15px;
+  padding-right: 37px;
+  padding-left: 0px;
 }
 
 .profile-editor-heading {
   text-align: center;
+}
+
+.green-focus {
+  display: block;
+  width: 200px;
+  margin-right: 14px;
+  margin-left: 23px;
+  float: right;
 }
 
 .green-focus:focus {
@@ -2473,4 +2530,125 @@ textarea.w-select {
   border-width: 2px;
   border-color: rgba(78, 236, 56, .67);
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, .54);
+}
+
+.green-focus.signup-alignment {
+  display: block;
+  margin-top: 15px;
+  margin-right: 42px;
+  margin-bottom: 15px;
+  float: none;
+}
+
+.booking-div {
+  height: 20%;
+  float: none;
+}
+
+.booking-wrapper {
+  height: 100%;
+}
+
+.booking-input {
+  width: 150px;
+  margin-right: 14px;
+  float: right;
+}
+
+.booking-input.green-focus {
+  float: left;
+}
+
+.update-profile-div {
+  display: block;
+  width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.update-profile-wrapper {
+  display: block;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.booking-row-title {
+  height: 20%;
+}
+
+.booking-column {
+  height: 100%;
+}
+
+.example-wrapper {
+  display: block;
+  width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.location-dropdown {
+  display: block;
+  width: 200px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  margin-left: 25px;
+  padding-bottom: 0px;
+  float: none;
+}
+
+.workout-button {
+  display: block;
+  width: 159px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 25px;
+
+  border-radius: 16px;
+  background-color: rgba(78, 236, 56, .67);
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, .34);
+  text-align: center;
+}
+
+#pending {
+  float: right;
+}
+
+#pendingTitle {
+  text-align: center;
+}
+
+#accept {
+  margin: 5px;
+  margin-right: 20px;
+  height: 55px;
+  width: 55px;
+}
+
+#reject {
+  margin: 5px;
+  height: 55px;
+  width: 55px;
+}
+
+#confirmedBooking, #pendingBooking {
+  margin-left: auto;
+  margin-right: auto;
+  height: 100px;
+}
+
+#confirmedBooking {
+  width: 80%;
+}
+
+#pendingBooking {
+  width: 90%;
+}
+
+#right {
+  white-space: nowrap;
+  float: right;
+  margin: 0px;
 }

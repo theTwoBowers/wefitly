@@ -1,7 +1,7 @@
-var Q = require('q')
-var mongoose = require('mongoose')
+var Q = require('q');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt-nodejs')
+var bcrypt = require('bcrypt-nodejs');
 const SALT_WORK_FACTOR = 10;
 
 const UserSchema = new Schema({
@@ -9,8 +9,9 @@ const UserSchema = new Schema({
   lastname: String,
   username: String,
   password: String,
-  salt: String,
-})
+  location: String,
+  salt: String
+});
 
 UserSchema.pre('save', function (next) {
   let newUser = this;
@@ -23,7 +24,7 @@ UserSchema.pre('save', function (next) {
         return console.error(error);
       }
       newUser.password = hash;
-      newUser.salt = salt
+      newUser.salt = salt;
       next();
     });
   });
