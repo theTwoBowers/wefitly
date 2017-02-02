@@ -16,6 +16,7 @@ module.exports = {
           userLastname: doc[0].lastname,
           isBooked: !req.body.isBooked,
           trainerEmail: req.body.trainerEmail,
+          userEmail: req.session.email,
           service: req.body.service,
           duration: req.body.duration,
           date: req.body.date
@@ -33,7 +34,7 @@ module.exports = {
   displayBookings: function(req, res) {
     console.log('req.session.email', req.session);
     BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
-      if (err) { 
+      if (err) {
         console.error(err); 
       } else {
         res.send(booking);

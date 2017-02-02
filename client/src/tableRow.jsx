@@ -12,11 +12,12 @@ class TableRow extends React.Component {
     e.preventDefault();
     $.post('/api/bookings', {
       isBooked: true,
+      trainerName: this.props.firstName + ' ' + this.props.lastName,
       trainerEmail: this.props.email,
       service: this.refs.service.value,
       duration: this.refs.duration.value
     }).done((results) => {
-      console.log('success');
+      console.log('success:', results);
     });
     this.refs.service.value = '';
     this.refs.duration.value = '';
