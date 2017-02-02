@@ -37,7 +37,7 @@ class TableRow extends React.Component {
             </div>
             <div className="services-container">
               <ul className="services-list w-list-unstyled">
-                <li className="services-list-item">Name: {this.props.firstName} {this.props.lastName}</li>
+                <li className="services-list-item">Name: {this.props.firstName + ' ' + this.props.lastName}</li>
                 <li className="services-list-item">Location: {this.props.location}</li>
                 <li className="services-list-item">{this.props.services}</li>
               </ul>
