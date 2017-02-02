@@ -19,7 +19,6 @@ class TableRow extends React.Component {
     }).done((results) => {
       this.props.submitRequest();
     });
-    this.refs.service.value = '';
     this.refs.duration.value = '';
   }   
   
@@ -34,14 +33,13 @@ class TableRow extends React.Component {
           <div className="extended-row-column w-clearfix">
             <div className="services-container w-clearfix">
               <p className="dashboard-paragraph">Bio: {this.props.bio}</p>
-              <br/>
-              <p className="dashboard-paragraph">Hourly Rate: {this.props.rate}</p>
+              
+              <span> Hourly Rate: ${this.props.rate}</span>
             </div>
             <div className="services-container">
               <ul className="services-list w-list-unstyled">
                 <li className="services-list-item">Name: {this.props.firstName + ' ' + this.props.lastName}</li>
                 <li className="services-list-item">Location: {this.props.location}</li>
-                <li className="services-list-item">{this.props.services}</li>
               </ul>
             </div>
           </div>
@@ -50,7 +48,11 @@ class TableRow extends React.Component {
               <form onSubmit={this.handleBooking.bind(this)} className="booking-wrapper w-clearfix">
                 <input className="book-button-alignment signupbutton w-button" type="submit" value="Book"/>
                 <input className="booking-input green-focus w-input" placeholder="How Long?" type="text" required ref='duration'/>
-                <input className="booking-input green-focus w-input" placeholder="Which Service?" type="text" required ref='service' />
+                <select className="booking-input green-focus w-input" placeholder="Which Service?" required ref='service'>
+                  <option value="" disabled selected>Pick your service</option>
+                  {this.props.services.split('/').map(function(service, i) {
+                    return <option required ref='service' value={service} className="services-list-item" key={i}>{service}</option>;
+                  })}</select> 
                 <input type="date" />
               </form>
             </div>
