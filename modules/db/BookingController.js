@@ -5,12 +5,9 @@ module.exports = {
 
   addBooking: function(req, res) {
     UserModel.find({username: req.session.email}).exec(function(err, doc) {
-      console.log('inside findOne:', req.session.email);
       if (err) {
         res.sendStatus(501);
       } else {
-        console.log('user-info for booking: ', doc);
-        console.log('req.body:', req.body);
         new BookingSchema({
           userFirstname: doc[0].firstname,
           userLastname: doc[0].lastname,
@@ -33,7 +30,6 @@ module.exports = {
   },
 
   displayBookings: function(req, res) {
-    console.log('req.session.email', req.session);
     BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
       if (err) {
         console.error(err); 
@@ -49,7 +45,6 @@ module.exports = {
       if (err) {
         console.error(err);
       } else {
-        console.log('display booking------------', booking);
         res.send(booking);
       }
     });
@@ -63,7 +58,6 @@ module.exports = {
       if (err) {
         console.error(err);
       } else {
-        console.log('Confirmed Booking id -', req.body._id);
         res.end();
       }
     });
@@ -74,7 +68,6 @@ module.exports = {
       if (err) {
         console.error(err);
       } else {
-        console.log('Deleted Booking id -', req.body._id);
         res.end();
       }
     });

@@ -61,7 +61,6 @@ class TrainerDash extends React.Component {
       }
     }).done(function(response) {
       outer.updateBookings();
-      console.log('Accepted booking request');
     }).fail(function(response) {
       console.log('Failed to accept request');
     });
@@ -79,7 +78,6 @@ class TrainerDash extends React.Component {
       }
     }).done(function(response) {
       outer.updateBookings();
-      console.log('Rejected booking request');
     }).fail(function(response) {
       console.log('Failed to reject request');
     });

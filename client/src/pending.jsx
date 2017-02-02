@@ -17,7 +17,6 @@ class Pending extends React.Component {
   //   );
   // }
   componentWillMount() {
-    console.log('pending props', this.props);
     if (this.props.user) {
       this.setState({
         userType: 'Trainer',
@@ -36,7 +35,6 @@ class Pending extends React.Component {
   }
 
   render() {
-    console.log('-----bookingrow', this.props);    
     return (
       <div id="pendingBooking">
         <li className="testimonial-row" id="pendingBooking">

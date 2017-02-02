@@ -17,7 +17,6 @@ class TableRow extends React.Component {
       service: this.refs.service.value,
       duration: this.refs.duration.value
     }).done((results) => {
-      console.log('success');
     });
     this.refs.service.value = '';
     this.refs.duration.value = '';

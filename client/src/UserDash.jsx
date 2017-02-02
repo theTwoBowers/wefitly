@@ -19,7 +19,6 @@ class UserDash extends React.Component {
      
   updateBookings() {
     $.get('/api/userBookings').done((bookings) => {
-      console.log('userBookings ----------------', bookings);
       var confirmedBookings = [];
       var pendingBookings = [];
       bookings.forEach(function(booking) {
@@ -33,7 +32,6 @@ class UserDash extends React.Component {
         confirmed: confirmedBookings,
         pending: pendingBookings
       });
-      console.log('this is the pending state--------', this.state.pending);
     });
   }
    
