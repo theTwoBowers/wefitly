@@ -14,9 +14,11 @@ module.exports = {
         new BookingSchema({
           userFirstname: doc[0].firstname,
           userLastname: doc[0].lastname,
-          isBooked: !req.body.isBooked,
+          userEmail: req.session.email,
+          trainerName: req.body.trainerName,
           trainerEmail: req.body.trainerEmail,
           service: req.body.service,
+          isBooked: !req.body.isBooked,
           duration: req.body.duration,
           date: req.body.date
         }).save((err) => {
@@ -33,7 +35,7 @@ module.exports = {
   displayBookings: function(req, res) {
     console.log('req.session.email', req.session);
     BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
-      if (err) { 
+      if (err) {
         console.error(err); 
       } else {
         res.send(booking);
@@ -42,10 +44,12 @@ module.exports = {
   },
 
   displayUserBookings: function(req, res) {
+    
     BookingSchema.find({userEmail: req.session.email}).exec(function(err, booking) {
       if (err) {
         console.error(err);
       } else {
+        console.log('display booking------------', booking);
         res.send(booking);
       }
     });

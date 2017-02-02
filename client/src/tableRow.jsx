@@ -12,6 +12,7 @@ class TableRow extends React.Component {
     e.preventDefault();
     $.post('/api/bookings', {
       isBooked: true,
+      trainerName: this.props.firstName + ' ' + this.props.lastName,
       trainerEmail: this.props.email,
       service: this.refs.service.value,
       duration: this.refs.duration.value
@@ -36,7 +37,7 @@ class TableRow extends React.Component {
             </div>
             <div className="services-container">
               <ul className="services-list w-list-unstyled">
-                <li className="services-list-item">Name: {this.props.firstName} {this.props.lastName}</li>
+                <li className="services-list-item">Name: {this.props.firstName + ' ' + this.props.lastName}</li>
                 <li className="services-list-item">Location: {this.props.location}</li>
                 <li className="services-list-item">{this.props.services}</li>
               </ul>
