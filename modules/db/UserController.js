@@ -3,7 +3,6 @@ const UserModel = require('./userMethods.js');
 module.exports = {
 
   signin: function(req, res) {
-    console.log('user signin controller');
     const password = req.body.password;
     const email = req.body.email;
     UserModel.comparePassword(email, password, (err, isMatch)=>{
@@ -21,7 +20,6 @@ module.exports = {
   },
 
   signup: function(req, res) {
-    console.log('user signup controller');
     const user = req.body;
     const email = req.body.email;
     UserModel.signup(user, (err) => {
@@ -37,7 +35,6 @@ module.exports = {
 
   getUser: function(req, res) {
     UserModel.find({username: req.session.email}).then(function(userInfo) {
-      console.log('====================', userInfo[0].location);
       res.json(userInfo[0].location);
     });
   }

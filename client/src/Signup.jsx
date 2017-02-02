@@ -24,7 +24,6 @@ class Signup extends React.Component {
         'password': this.refs.ps.value,
       }
     }).done(function(response) {
-      console.log('signup data recieved');
       props.callback();
     }).fail(function(response) {
       console.log('signup data transmission failure');

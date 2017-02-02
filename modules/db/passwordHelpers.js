@@ -10,7 +10,7 @@ module.exports = {
       location: entry.location,
     })
     .save((err)=>{
-      next(err)
+      next(err);
     });
   },
 
@@ -19,14 +19,13 @@ module.exports = {
     .then((match) => {
       if (match) {
         bcrypt.compare(candidatePassWord, match.password, (err, isMatch) =>{
-          if (err){
+          if (err) {
             next(err, null);
           }
-          console.log('isMatch', isMatch)
           next(null, isMatch);
         });
       } else {
-        next('email not found')
+        next('email not found');
       }
     });
   }

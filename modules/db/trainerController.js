@@ -3,7 +3,6 @@ const TrainerModel = require('./trainerMethods.js');
 module.exports = {
 
   signin: function(req, res) {
-    console.log('trainer signin controller');
     const password = req.body.password;
     const email = req.body.email;
     TrainerModel.comparePassword(email, password, (err, isMatch) => {
@@ -22,11 +21,9 @@ module.exports = {
   },
 
   signup: function(req, res) {
-    console.log('trainer signup controller');
     const user = req.body;
     TrainerModel.signup(user, (err) => {
       if (err) {
-        console.log('failed');
         res.end('fail');
       } else {
         req.session.isTrainer = true;
@@ -38,7 +35,6 @@ module.exports = {
   },
 
   filter: function(req, res) {
-    console.log('trainer filter');
     const location = req.query.location;
     TrainerModel.filterTrainers(location, (results) => {
       res.json(results);
@@ -46,7 +42,6 @@ module.exports = {
   },
 
   getAll: function(req, res) {
-    console.log('trainer getall');
     TrainerModel.findAllTrainers((results) => {
       res.json(results);
     });
@@ -80,7 +75,6 @@ module.exports = {
         res.sendStatus(401);
       }
     } else {
-      console.log('unauth on profile');
       res.sendStatus(401);
     }
   },

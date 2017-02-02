@@ -20,7 +20,6 @@ class TrainerTable extends React.Component {
       method: 'GET',
       ContentType: 'application/json'
     }).done(function (response) {
-      console.log('during mount', response);
       $.ajax({
         url: '/api/filterTrainers',
         method: 'GET',
@@ -30,7 +29,6 @@ class TrainerTable extends React.Component {
         }
       })
       .done(function (respo) {
-        console.log('respo', respo);
         outer.setState({entries: respo});
       });  
     });

@@ -24,16 +24,13 @@ class Signup extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log('transmitting data');
     $.ajax({
       url: '/api/updateTrainer',
       type: 'POST',
       ContentType: 'application/json',
       data: this.state
     }).done(function(response) {
-      console.log('profile data recieved');
       window.location.href = '#/trainerdash';
-      console.log('after dash');
     }).fail(function(response) {
       console.log('profile transmission failure');
     });
