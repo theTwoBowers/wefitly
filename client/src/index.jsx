@@ -8,6 +8,8 @@ import Signin from './Signin.jsx';
 import TrainerProfile from './trainerProfile.jsx';
 import UserDash from './UserDash.jsx';
 import TrainerDash from './TrainerDash.jsx';
+import Pending from './pending.jsx';
+import Confirmed from './confirmed.jsx';
 import _ from 'lodash';
 
 class App extends React.Component {
@@ -47,7 +49,9 @@ class App extends React.Component {
         <Route path="/trainerdash" component={() => (
           <TrainerDash endpoint="/api/bookings" editProfile={this.onTrainerSignUp.bind(this)} />
         )} />
-        <Route path='/dash' component={UserDash} />
+        <Route path='/dash' component={() => (
+          <UserDash component={Pending} />
+        )} />
         <Route path="/" component={Home} />
       </Router>
     );
