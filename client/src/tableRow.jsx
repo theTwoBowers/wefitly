@@ -34,7 +34,7 @@ class TableRow extends React.Component {
             <div className="services-container w-clearfix">
               <p className="dashboard-paragraph">Bio: {this.props.bio}</p>
               
-              <span> Hourly Rate: {this.props.rate}</span>
+              <span> Hourly Rate: ${this.props.rate}</span>
             </div>
             <div className="services-container">
               <ul className="services-list w-list-unstyled">
