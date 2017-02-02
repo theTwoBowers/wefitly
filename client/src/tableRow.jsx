@@ -18,7 +18,11 @@ class TableRow extends React.Component {
       date: this.refs.date.value,
       duration: this.refs.duration.value
     }).done((results) => {
+<<<<<<< HEAD
       this.props.submitRequest();
+=======
+      console.log('success:', results);
+>>>>>>> Convert UserDash into class
     });
 
     this.refs.duration.value = '';
