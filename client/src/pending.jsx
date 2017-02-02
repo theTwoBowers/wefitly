@@ -22,14 +22,12 @@ class Pending extends React.Component {
         userType: 'Trainer',
         name: this.props.trainerName,
         visibility: {display: 'none'},
-        width: 'w-col w-col-3'
       });
     } else {
       this.setState({
         userType: 'Client',
         name: this.props.userFirstname + ' ' + this.props.userLastname,
         visibility: {},
-        width: 'w-col w-col-2'
       });
     }
   }
@@ -45,11 +43,11 @@ class Pending extends React.Component {
                 <div>{this.state.name}</div>
               </div>
             </div>
-            <div className={this.state.width}>
+            <div className='w-col w-col-2'>
               <h4>Service</h4>
               <div>{this.props.service}</div>
             </div>
-            <div className={this.state.width}>
+            <div className='w-col w-col-2'>
               <h4>Duration</h4>
               <div>{this.props.duration}</div>
             </div>
@@ -59,7 +57,7 @@ class Pending extends React.Component {
             </div>
             <div id="right">
               <img id="accept" src="./assets/greencheck.png" style={this.state.visibility} onClick={() => this.props.acceptRequest(this.props.bookingId)}/>
-              <img id="reject" src="./assets/redx.png" style={this.state.visibility} onClick={() => this.props.rejectRequest(this.props.bookingId)}/>
+              <img id="reject" src="./assets/redx.png" onClick={() => this.props.rejectRequest(this.props.bookingId)}/>
             </div>
           </div>
         </li>
