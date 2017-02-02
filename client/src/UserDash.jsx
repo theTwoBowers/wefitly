@@ -48,6 +48,7 @@ class UserDash extends React.Component {
 
 =======
     $.get('/api/userBookings').done((bookings) => {
+      console.log('userBookings ----------------', bookings);
       var confirmedBookings = [];
       var pendingBookings = [];
       bookings.forEach(function(booking) {
@@ -55,17 +56,22 @@ class UserDash extends React.Component {
           confirmedBookings.push(booking);
         } else {
           pendingBookings.push(booking);
-        } 
+        }
       });
       this.setState({
         confirmed: confirmedBookings,
         pending: pendingBookings
       });
+      console.log('this is the pending state--------', this.state.pending);
     });
   }
    
+<<<<<<< HEAD
 >>>>>>> Convert UserDash into class
   componentWillMount() {
+=======
+  componentDidMount() {
+>>>>>>> Bookings render on user end
     this.updateBookings();
   }
 
@@ -143,12 +149,12 @@ class UserDash extends React.Component {
         <h2>Bookings</h2>
         <div className="dash-container w-col w-col-6" id="confirmed">
           <h1 id="pendingTitle">Confirmed Bookings</h1>
-          <TrainerTable />
+            <BookingTable booking={this.state.confirmed} RequestType={Confirmed} /> 
         </div>
 
         <div className="dash-container w-col-6" id="pending">
           <h1 id="pendingTitle">Pending Bookings</h1>
-          <TrainerTable />
+            <BookingTable booking={this.state.pending} RequestType={Pending} />   
         </div> 
       </div>
     </div>

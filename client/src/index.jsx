@@ -50,7 +50,11 @@ class App extends React.Component {
           <TrainerDash endpoint="/api/bookings" editProfile={this.onTrainerSignUp.bind(this)} />
         )} />
         <Route path='/dash' component={() => (
+<<<<<<< HEAD
           <UserDash endpoint="/api/bookings" />
+=======
+          <UserDash component={Pending} />
+>>>>>>> Bookings render on user end
         )} />
         <Route path="/" component={Home} />
       </Router>

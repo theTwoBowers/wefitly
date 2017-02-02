@@ -56,6 +56,7 @@ module.exports = {
   },
 
   displayUserBookings: function(req, res) {
+<<<<<<< HEAD
     if (!req.session.email) {
       res.send('no email');
     } else {
@@ -67,6 +68,17 @@ module.exports = {
         }
       });
     }
+=======
+    
+    BookingSchema.find({userEmail: req.session.email}).exec(function(err, booking) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log('display booking------------', booking);
+        res.send(booking);
+      }
+    });
+>>>>>>> Bookings render on user end
   },
 
   confirmBooking: function(req, res) {
