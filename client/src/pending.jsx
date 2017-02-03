@@ -24,6 +24,13 @@ class Pending extends React.Component {
     }
   }
 
+  correctDate(date) {
+    var d = date.substr(4, 1);
+    var c = date.substr(0, 4);
+    var out = date.substr(5, 5).concat(-c);
+    return out;
+  } 
+
   render() {
     return (
       <div id="pendingBooking">
@@ -45,7 +52,7 @@ class Pending extends React.Component {
             </div>
             <div className="w-col w-col-3">
               <h4>Date / Time</h4>
-              <div>Feb. 12 - 10:30am</div>
+              <div>{this.correctDate(this.props.date)}</div>
             </div>
             <div id="right">
               <img id="accept" src="./assets/greencheck.png" style={this.state.visibility} onClick={() => this.props.acceptRequest(this.props.bookingId)}/>
