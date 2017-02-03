@@ -2650,7 +2650,7 @@ textarea.w-select {
 #confirmedBooking, #pendingBooking {
   margin-left: auto;
   margin-right: auto;
-  height: 100px;
+  height: auto;
 }
 
 #confirmedBooking {
@@ -2675,4 +2675,14 @@ textarea.w-select {
 
 #bioField {
   height: 300px;
+}
+
+#bookingMessages {
+  margin-top: 10px;
+  background-color: #ffffff;
+  text-align: left
+}
+
+#bookingInput {
+  width: 100%;
 }
