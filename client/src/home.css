@@ -212,6 +212,7 @@ textarea {
   /* 2 */
   margin: 0;
   /* 3 */
+  resize: none;
 }
 /**
  * Address `overflow` set to `hidden` in IE 8/9/10/11.
@@ -2456,6 +2457,19 @@ textarea.w-select {
   border-radius: 50px;
 }
 
+.profile-image {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  float: left;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(78, 236, 56, .67);
+  border-radius: 50%;
+}
+
 .test-paragraph {
   height: 100%;
   float: left;
@@ -2651,4 +2665,14 @@ textarea.w-select {
   white-space: nowrap;
   float: right;
   margin: 0px;
+}
+
+#profileImage {
+  display: inline-block;
+  position: relative;
+  left: 43%;
+}
+
+#bioField {
+  height: 300px;
 }

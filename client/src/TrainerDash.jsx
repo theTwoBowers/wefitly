@@ -13,7 +13,8 @@ class TrainerDash extends React.Component {
     super(props);
     this.state = {
       confirmed: [],
-      pending: []
+      pending: [],
+      profileImage: ''
     };
   }
 
@@ -39,9 +40,16 @@ class TrainerDash extends React.Component {
       }
     });
   }
+
+  getTrainerProfile() {
+    $.get('/api/getProfile').done((profile) => {
+      this.state.profileImage = profile.profilepic;
+    });
+  }
    
   componentWillMount() {
     this.updateBookings();
+    this.getTrainerProfile();
   }
 
   componentDidUpdate(props, state) {
@@ -97,9 +105,15 @@ class TrainerDash extends React.Component {
     });
   } 
   render() {
+    console.log(this.props);
     return (
       <div className="dash-body">
         <button onClick={this.logout.bind(this)}>Logout</button>
+
+        <div id="profileImage">
+          <img className="profile-image" src={this.state.profileImage} />
+        </div>
+
         <div className="w-form">
           <form className="update-profile-wrapper w-clearfix" id="email-form">
             <input className="signupbutton w-button" type="submit" value="Update Your Profile" onClick={this.props.editProfile} />
