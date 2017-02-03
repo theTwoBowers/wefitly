@@ -99,7 +99,7 @@ class UserDash extends React.Component {
 
         <div className="dash-container w-col w-col-6" id="confirmed">
           <h1 id="center">Confirmed Bookings</h1>
-          <BookingTable booking={this.state.confirmed} RequestType={Confirmed} type={'user'} /> 
+          <BookingTable booking={this.state.confirmed} RequestType={Confirmed} type={'user'} submitRequest={this.submitRequest.bind(this)} /> 
         </div>
 
         <div className="dash-container w-col-6" id="pending">

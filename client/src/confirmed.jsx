@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import css from './home.css';
 
 class Confirmed extends React.Component {
@@ -15,13 +16,15 @@ class Confirmed extends React.Component {
       this.setState({
         userType: 'Trainer',
         name: this.props.trainerName,
-        visibility: {display: 'none'}
+        visibility: {display: 'none'},
+        sender: 'Warrior: '
       });
     } else {
       this.setState({
         userType: 'Client',
         name: this.props.userFirstname + ' ' + this.props.userLastname,
-        visibility: {}
+        visibility: {},
+        sender: 'Trainer: '
       });
     }
   }
@@ -47,19 +50,27 @@ class Confirmed extends React.Component {
 
   writeMessage(e) {
     e.preventDefault();
-    $.put('/api/chat', {
-      // isBooked: true,
-      // trainerName: this.props.firstName + ' ' + this.props.lastName,
-      // trainerEmail: this.props.email,
-      // service: this.refs.service.value,
-      // duration: this.refs.duration.value
-    }).done((results) => {
-      this.props.submitRequest();
+    var outer = this;
+    console.log(outer.props.submitRequest());
+    $.ajax({
+      url: '/api/chat',
+      type: 'PUT',
+      data: {
+        _id: outer.props.bookingId,
+        message: outer.state.sender + outer.refs.message.value
+      }
+    }).done(function() {
+      console.log(outer.props.submitRequest());
+      outer.props.submitRequest();
+    }).fail(function() {
+      console.log('you fail');
     });
+
+    outer.refs.message.value = '';
   }
 
   render() {
-    console.log(this.props.date);
+    console.log(this.props);
     return (
       <div id="confirmedBooking">
         <li className="testimonial-row" id="confirmedBooking">
@@ -88,10 +99,13 @@ class Confirmed extends React.Component {
           </div>
           <div className="w-row" style={this.state.visibility}>
             <div className="w-col w-col-12" id="bookingMessages">
-              {this.state.messages.map((message, i) =>
+              {this.props.messages.reverse().map((message, i) =>
                 <p key={i}>{message}</p>
               )}
-              <input id="bookingInput"></input>
+              <form onSubmit={this.writeMessage.bind(this)}>
+                <input id="bookingInput" ref="message"></input>
+                <button>Write message</button>
+              </form>
             </div>
           </div>
         </li>
