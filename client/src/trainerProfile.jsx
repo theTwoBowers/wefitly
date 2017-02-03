@@ -48,7 +48,7 @@ class Signup extends React.Component {
             {/*<input onChange={this.handleFormChange} className="green-focus signup-alignment w-input" type='text' name='firstname' placeholder='First Name' value={this.state.firstname || ''}/>
             <input className="green-focus signup-alignment w-input" onChange={this.handleFormChange} type='text' name='lastname' placeholder='Last Name' value={this.state.lastname || ''}/>
            */} <input onChange={this.handleFormChange} className="green-focus signup-alignment w-input" placeholder="Image url" name='pic' type='text' />
-            <input className="green-focus signup-alignment w-input"onChange={this.handleFormChange} type='text' name='bio' placeholder='Tell us about yourself' value={this.state.bio || ''}></input>
+            <textarea id="bioField" className="green-focus signup-alignment w-input"onChange={this.handleFormChange} type='text' name='bio' placeholder='Tell us about yourself' value={this.state.bio || ''}></textarea>
             <input className="green-focus signup-alignment w-input"onChange={this.handleFormChange} type='text' name='rate' placeholder='Enter your hourly rate' value={this.state.rate || ''}></input>
             <div className="w-checkbox">
               <input className="green-focus signup-alignment w-input" onChange={this.handleFormChange} type='checkbox' name='oneonone' />

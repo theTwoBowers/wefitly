@@ -46,9 +46,7 @@ class UserDash extends React.Component {
   }
 
   componentDidUpdate(props, state) {
-    var prevUState = JSON.stringify(state.update);
-    var newUState = JSON.stringify(this.state.update);
-    if (prevUState !== newUState) {
+    if (state.update !== this.state.update) {
       this.updateBookings();
     }
   }  

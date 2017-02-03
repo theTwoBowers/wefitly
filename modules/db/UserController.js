@@ -33,6 +33,16 @@ module.exports = {
     });
   },
 
+  checkEmail: function(req, res) {
+    UserModel.find({username: req.query.email}).then(function(userInfo) {
+      if (userInfo.length) {
+        res.json(userInfo);
+      } else {
+        res.end();
+      }
+    });    
+  },
+
   getUser: function(req, res) {
     UserModel.find({username: req.session.email}).then(function(userInfo) {
       res.json(userInfo[0].location);

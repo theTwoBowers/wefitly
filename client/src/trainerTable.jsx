@@ -89,7 +89,6 @@ class TrainerTable extends React.Component {
     }
   }
   render() {
-
     let elements = [];
     let length;
     this.state.entries.forEach(( en, index )=> {
