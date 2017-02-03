@@ -92,12 +92,11 @@ class UserDash extends React.Component {
         <button onClick={this.logout.bind(this)}>Logout</button>
         <div className="dash-body">
           <div className="dash-container w-container">
-            <h1>Your Dashboard</h1>
+            <h1>Book a Trainer</h1>
             <TrainerTable submitRequest={this.submitRequest.bind(this)} />
           </div>
         </div>
 
-        <h1 id="center">Bookings</h1>
         <div className="dash-container w-col w-col-6" id="confirmed">
           <h1 id="center">Confirmed Bookings</h1>
           <BookingTable booking={this.state.confirmed} RequestType={Confirmed} type={'user'} /> 
