@@ -48,7 +48,8 @@ module.exports = {
   },
 
   updateTrainer: function(req, res) {
-    if (req.session) {
+    console.log('updating Trainer------------------');
+    if (req.session.email) {
       if (req.session.isTrainer) {
         const updateObj = {
           // firstname: req.body.firstname,
@@ -75,12 +76,14 @@ module.exports = {
         res.sendStatus(401);
       }
     } else {
+      console.log('no session email');
       res.sendStatus(401);
     }
   },
 
   getProfile: function(req, res) {
-    if (req.session) {
+    console.log('GETTING PROFILE -------------------');
+    if (req.session.email) {
       if (req.session.isTrainer) {
         TrainerModel.getProfile(req.session.email, function(err, doc) {
           if (err) {
@@ -112,13 +115,16 @@ module.exports = {
         res.sendStatus(401);
       }
     } else {
+      console.log('no session email');
       res.sendStatus(401);
     }
   },
 
   logout: function(req, res) {
+    console.log('BEFORE', req.session);
     req.session.destroy();
-    res.redirect('/');
+    console.log('AFTER', req.session);
+    res.send({redirect: '/'});
   }
 };
 
