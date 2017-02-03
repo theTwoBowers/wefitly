@@ -10,12 +10,12 @@ const findAll = Q.nbind(UserModel.find, UserModel);
 
 
 UserModel.signup = (user, next) => {
- passwordHelpers.signup(user, UserModel, next);
-}
-
+  passwordHelpers.signup(user, UserModel, next);
+};
+ 
 UserModel.comparePassword = (email, candidatePassword, next) => {
   passwordHelpers.comparePassword(email, candidatePassword, findUser, next);
-}
+};
 
 UserModel.findAllTrainers = (next) => {
   findAll({})
