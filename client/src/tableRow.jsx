@@ -15,12 +15,14 @@ class TableRow extends React.Component {
       trainerName: this.props.firstName + ' ' + this.props.lastName,
       trainerEmail: this.props.email,
       service: this.refs.service.value,
+      date: this.refs.date.value,
       duration: this.refs.duration.value
     }).done((results) => {
       this.props.submitRequest();
     });
+
     this.refs.duration.value = '';
-  }   
+  }
   
 
   render() {
@@ -53,7 +55,7 @@ class TableRow extends React.Component {
                   {this.props.services.split('/').map(function(service, i) {
                     return <option required ref='service' value={service} className="services-list-item" key={i}>{service}</option>;
                   })}</select> 
-                <input type="date" />
+                <input type="date" required ref='date' />
               </form>
             </div>
           </div>
