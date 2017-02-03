@@ -19,20 +19,25 @@ class UserDash extends React.Component {
   }
      
   updateBookings() {
+    var outer = this;
     $.get('/api/userBookings').done((bookings) => {
-      var confirmedBookings = [];
-      var pendingBookings = [];
-      bookings.forEach(function(booking) {
-        if (booking.isBooked) {
-          confirmedBookings.push(booking);
-        } else {
-          pendingBookings.push(booking);
-        }
-      });
-      this.setState({
-        confirmed: confirmedBookings,
-        pending: pendingBookings
-      });
+      if (bookings === 'no email') {
+        window.location.href = '#/';
+      } else {
+        var confirmedBookings = [];
+        var pendingBookings = [];
+        bookings.forEach(function(booking) {
+          if (booking.isBooked) {
+            confirmedBookings.push(booking);
+          } else {
+            pendingBookings.push(booking);
+          }
+        });
+        outer.setState({
+          confirmed: confirmedBookings,
+          pending: pendingBookings
+        });
+      }
     });
   }
 
@@ -41,9 +46,7 @@ class UserDash extends React.Component {
   }
 
   componentDidUpdate(props, state) {
-    var prevUState = JSON.stringify(state.update);
-    var newUState = JSON.stringify(this.state.update);
-    if (prevUState !== newUState) {
+    if (state.update !== this.state.update) {
       this.updateBookings();
     }
   }  
@@ -73,9 +76,20 @@ class UserDash extends React.Component {
     });
   }
 
+  logout() {
+    $.ajax({
+      url: '/api/logout',
+      type: 'POST'
+    })
+    .then(function() {
+      window.location.href = '#/';
+    });
+  }
+  
   render() {
     return (
       <div>
+        <button onClick={this.logout.bind(this)}>Logout</button>
         <div className="dash-body">
           <div className="dash-container w-container">
             <h1>Your Dashboard</h1>

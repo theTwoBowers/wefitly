@@ -13,30 +13,43 @@ class TrainerDash extends React.Component {
     super(props);
     this.state = {
       confirmed: [],
-      pending: []
+      pending: [],
+      profileImage: ''
     };
   }
 
   updateBookings() {
+    var outer = this;
     $.get('/api/bookings').done((bookings) => {
-      var confirmedBookings = [];
-      var pendingBookings = [];
-      bookings.forEach(function(booking) {
-        if (booking.isBooked) {
-          confirmedBookings.push(booking);
-        } else {
-          pendingBookings.push(booking);
-        }
-      });
-      this.setState({
-        confirmed: confirmedBookings,
-        pending: pendingBookings
-      });
+      if (bookings === 'no email') {
+        window.location.href = '#/';
+      } else {
+        var confirmedBookings = [];
+        var pendingBookings = [];
+        bookings.forEach(function(booking) {
+          if (booking.isBooked) {
+            confirmedBookings.push(booking);
+          } else {
+            pendingBookings.push(booking);
+          }
+        });
+        outer.setState({
+          confirmed: confirmedBookings,
+          pending: pendingBookings
+        });   
+      }
+    });
+  }
+
+  getTrainerProfile() {
+    $.get('/api/getProfile').done((profile) => {
+      this.state.profileImage = profile.profilepic;
     });
   }
    
   componentWillMount() {
     this.updateBookings();
+    this.getTrainerProfile();
   }
 
   componentDidUpdate(props, state) {
@@ -83,9 +96,24 @@ class TrainerDash extends React.Component {
     });
   }
 
+  logout() {
+    $.ajax({
+      url: '/api/logout',
+      type: 'POST'
+    }).then(function() {
+      window.location.href = '#/';
+    });
+  } 
   render() {
+    console.log(this.props);
     return (
       <div className="dash-body">
+        <button onClick={this.logout.bind(this)}>Logout</button>
+
+        <div id="profileImage">
+          <img className="profile-image" src={this.state.profileImage} />
+        </div>
+
         <div className="w-form">
           <form className="update-profile-wrapper w-clearfix" id="email-form">
             <input className="signupbutton w-button" type="submit" value="Update Your Profile" onClick={this.props.editProfile} />
