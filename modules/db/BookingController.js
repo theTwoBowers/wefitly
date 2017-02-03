@@ -30,24 +30,31 @@ module.exports = {
   },
 
   displayBookings: function(req, res) {
-    BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
-      if (err) {
-        console.error(err); 
-      } else {
-        res.send(booking);
-      }
-    });
+    if (!req.session.email) {
+      res.send('no email');
+    } else {
+      BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
+        if (err) {
+          console.error(err); 
+        } else {
+          res.send(booking);
+        }
+      });
+    }
   },
 
   displayUserBookings: function(req, res) {
-    
-    BookingSchema.find({userEmail: req.session.email}).exec(function(err, booking) {
-      if (err) {
-        console.error(err);
-      } else {
-        res.send(booking);
-      }
-    });
+    if (!req.session.email) {
+      res.send('no email');
+    } else {
+      BookingSchema.find({userEmail: req.session.email}).exec(function(err, booking) {
+        if (err) {
+          console.error(err); 
+        } else {
+          res.send(booking);
+        }
+      });
+    }
   },
 
   confirmBooking: function(req, res) {

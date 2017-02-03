@@ -46,6 +46,7 @@ app.post('/api/trainerSignin', TrainerController.signin);
 app.get('/api/filterTrainers', TrainerController.filter);
 app.get('/api/getAllTrainers', TrainerController.getAll);
 app.post('/api/updateTrainer', TrainerController.updateTrainer);
+app.post('/api/logout', TrainerController.logout);
 app.get('/api/getprofile', TrainerController.getProfile);
 app.post('/api/bookings', BookingController.addBooking);
 app.get('/api/bookings', BookingController.displayBookings);

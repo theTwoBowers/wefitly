@@ -18,20 +18,25 @@ class TrainerDash extends React.Component {
   }
 
   updateBookings() {
+    var outer = this;
     $.get('/api/bookings').done((bookings) => {
-      var confirmedBookings = [];
-      var pendingBookings = [];
-      bookings.forEach(function(booking) {
-        if (booking.isBooked) {
-          confirmedBookings.push(booking);
-        } else {
-          pendingBookings.push(booking);
-        }
-      });
-      this.setState({
-        confirmed: confirmedBookings,
-        pending: pendingBookings
-      });
+      if (bookings === 'no email') {
+        window.location.href = '#/';
+      } else {
+        var confirmedBookings = [];
+        var pendingBookings = [];
+        bookings.forEach(function(booking) {
+          if (booking.isBooked) {
+            confirmedBookings.push(booking);
+          } else {
+            pendingBookings.push(booking);
+          }
+        });
+        outer.setState({
+          confirmed: confirmedBookings,
+          pending: pendingBookings
+        });   
+      }
     });
   }
    
@@ -83,9 +88,18 @@ class TrainerDash extends React.Component {
     });
   }
 
+  logout() {
+    $.ajax({
+      url: '/api/logout',
+      type: 'POST'
+    }).then(function() {
+      window.location.href = '#/';
+    });
+  } 
   render() {
     return (
       <div className="dash-body">
+        <button onClick={this.logout.bind(this)}>Logout</button>
         <div className="w-form">
           <form className="update-profile-wrapper w-clearfix" id="email-form">
             <input className="signupbutton w-button" type="submit" value="Update Your Profile" onClick={this.props.editProfile} />
