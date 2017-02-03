@@ -43,6 +43,7 @@ app.get('/api/userSignup', UserController.checkEmail);
 app.post('/api/userSignin', UserController.signin);
 app.get('/api/userSignin', UserController.getUser);
 app.post('/api/trainerSignup', TrainerController.signup);
+app.get('/api/trainerSignup', TrainerController.checkEmail);
 app.post('/api/trainerSignin', TrainerController.signin);
 app.get('/api/filterTrainers', TrainerController.filter);
 app.get('/api/getAllTrainers', TrainerController.getAll);

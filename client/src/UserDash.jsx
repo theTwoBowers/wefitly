@@ -85,6 +85,7 @@ class UserDash extends React.Component {
       window.location.href = '#/';
     });
   }
+  
   render() {
     return (
       <div>

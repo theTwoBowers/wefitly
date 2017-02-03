@@ -125,6 +125,16 @@ module.exports = {
     req.session.destroy();
     console.log('AFTER', req.session);
     res.send({redirect: '/'});
+  },
+
+  checkEmail: function(req, res) {
+    TrainerModel.find({username: req.query.email}).then(function(trainerInfo) {
+      if (trainerInfo.length) {
+        res.json(trainerInfo);
+      } else {
+        res.end();
+      }
+    });    
   }
 };
 
