@@ -11,7 +11,7 @@ module.exports = {
     var post = {
       name: req.body.name,
       review: req.body.review,
-      rating: req.body.rating,
+      // rating: req.body.rating,
       trainer: req.body.trainer
     };
     reviewModel.create(post).then(function() {
