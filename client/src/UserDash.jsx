@@ -40,7 +40,7 @@ class UserDash extends React.Component {
       }
     });
   }
-
+  
   componentWillMount() {
     this.updateBookings();
   }

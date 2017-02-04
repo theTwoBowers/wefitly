@@ -11,7 +11,7 @@ var BookingSchema = new Schema({
   isBooked: Boolean,
   duration: String,
   date: String,
-  messages: [String]
+  messages: [[String]]
 });
 
 module.exports = mongoose.model('Booking', BookingSchema);

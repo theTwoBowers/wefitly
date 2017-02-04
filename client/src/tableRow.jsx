@@ -20,7 +20,6 @@ class TableRow extends React.Component {
     }).done((results) => {
       this.props.submitRequest();
     });
-
     this.refs.duration.value = '';
   }
   
