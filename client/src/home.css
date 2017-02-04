@@ -2712,3 +2712,13 @@ textarea.w-select {
   width: 100%;
   height: auto;
 }
+
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+#trainerDisplay {
+  margin-left: auto;
+  margin-right: auto;
+  width: 950px;
+}
