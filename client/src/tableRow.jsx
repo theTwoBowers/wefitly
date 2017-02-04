@@ -5,17 +5,19 @@ import css from './home.css';
 class TableRow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      times: ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM']
+    };
   }
 
   handleBooking(e) {
-
     e.preventDefault();
     $.post('/api/bookings', {
       isBooked: true,
       trainerName: this.props.firstName + ' ' + this.props.lastName,
       trainerEmail: this.props.email,
       service: this.refs.service.value,
-      date: this.refs.date.value,
+      date: this.refs.date.value + ' ' + this.refs.time.value,
       duration: this.refs.duration.value
     }).done((results) => {
       this.props.submitRequest();
@@ -27,7 +29,7 @@ class TableRow extends React.Component {
   render() {
     return ( 
     <div>
-      <li className="testimonial-row">
+      <li className="testimonial-row" id="trainerDisplay">
         <div className="row-container w-clearfix">
           <div className="row-column w-clearfix"><img className="test-image" src={this.props.pic} />
           </div>
@@ -49,12 +51,19 @@ class TableRow extends React.Component {
               <form onSubmit={this.handleBooking.bind(this)} className="booking-wrapper w-clearfix">
                 <input className="book-button-alignment signupbutton w-button" type="submit" value="Book"/>
                 <input className="booking-input green-focus w-input" placeholder="How Long?" type="text" required ref='duration'/>
-                <select className="booking-input green-focus w-input" placeholder="Which Service?" required ref='service'>
-                  <option value="" disabled selected>Pick your service</option>
-                  {this.props.services.split('/').map(function(service, i) {
-                    return <option required ref='service' value={service} className="services-list-item" key={i}>{service}</option>;
-                  })}</select> 
-                <input type="date" required ref='date' />
+                <select className="booking-input green-focus w-input" placeholder="Which Service?" required ref='service' defaultValue={''}>
+                  <option value="" disabled>Pick your service</option>
+                  {this.props.services.split('/').map((service, i) =>
+                    <option required ref='service' value={service} className="services-list-item" key={i}>{service}</option>
+                  )}
+                </select> 
+                <input className="booking-input green-focus w-input" type="date" required ref='date' />
+                <select className="booking-input green-focus w-input" placeholder="Time" required ref='time' defaultValue={''}>
+                  <option value="" disabled>Pick a time</option>
+                  {this.state.times.map((time, i) =>
+                    <option required ref='time' value={time} className="services-list-item" key={i}>{time}</option>
+                  )}
+                </select> 
               </form>
             </div>
           </div>

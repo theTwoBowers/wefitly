@@ -29,10 +29,11 @@ class Confirmed extends React.Component {
   }
 
   correctDate(date) {
-    var d = date.substr(4, 1);
-    var c = date.substr(0, 4);
-    var out = date.substr(5, 5).concat(-c);
-    return out;
+    var newDate = date.split(' ');
+    var d = newDate[0].substr(4, 1);
+    var c = newDate[0].substr(0, 4);
+    var out = newDate[0].substr(5, 5).concat(-c);
+    return out + ' at ' + newDate[1];
   } 
 
   toggleMessages() {
@@ -113,14 +114,14 @@ class Confirmed extends React.Component {
           <div className="w-row" style={this.state.messageVisibility}>
             <div className="w-col w-col-12" id="bookingMessages">
               {this.props.messages.map((message, i) =>
-                <p id="message">
+                <div id="message" key={i}>
                   <div id="timeStamp">
                     <span>{message[1]}</span>
                   </div>
                   <div id="messageText">
-                    <span id="messageText" key={i}>{message[0]}</span>
+                    <span id="messageText">{message[0]}</span>
                   </div>
-                </p>
+                </div>
               )}
             </div>
             <form onSubmit={this.writeMessage.bind(this)}>
