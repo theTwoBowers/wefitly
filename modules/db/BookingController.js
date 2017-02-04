@@ -4,7 +4,6 @@ const UserModel = require('./userSchema.js').UserModel;
 module.exports = {
 
   addBooking: function(req, res) {
-    console.log(req.body.date);
     UserModel.find({username: req.session.email}).exec(function(err, doc) {
       if (err) {
         res.sendStatus(501);
