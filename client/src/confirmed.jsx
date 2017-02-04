@@ -29,10 +29,11 @@ class Confirmed extends React.Component {
   }
 
   correctDate(date) {
-    var d = date.substr(4, 1);
-    var c = date.substr(0, 4);
-    var out = date.substr(5, 5).concat(-c);
-    return out;
+    var newDate = date.split(' ');
+    var d = newDate[0].substr(4, 1);
+    var c = newDate[0].substr(0, 4);
+    var out = newDate[0].substr(5, 5).concat(-c);
+    return out + ' at ' + newDate[1];
   } 
 
   toggleMessages() {
