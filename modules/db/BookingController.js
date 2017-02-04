@@ -31,7 +31,6 @@ module.exports = {
   },
 
   displayBookings: function(req, res) {
-<<<<<<< HEAD
     if (!req.session.email) {
       res.send('no email');
     } else {
@@ -43,20 +42,9 @@ module.exports = {
         }
       });
     }
-=======
-    console.log('req.session.email', req.session);
-    BookingSchema.find({trainerEmail: req.session.email}).exec(function(err, booking) {
-      if (err) {
-        console.error(err); 
-      } else {
-        res.send(booking);
-      }
-    });
->>>>>>> Convert UserDash into class
   },
 
   displayUserBookings: function(req, res) {
-<<<<<<< HEAD
     if (!req.session.email) {
       res.send('no email');
     } else {
@@ -68,17 +56,6 @@ module.exports = {
         }
       });
     }
-=======
-    
-    BookingSchema.find({userEmail: req.session.email}).exec(function(err, booking) {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log('display booking------------', booking);
-        res.send(booking);
-      }
-    });
->>>>>>> Bookings render on user end
   },
 
   confirmBooking: function(req, res) {

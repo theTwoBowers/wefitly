@@ -10,9 +10,7 @@ import UserDash from './UserDash.jsx';
 import TrainerDash from './TrainerDash.jsx';
 import Pending from './pending.jsx';
 import Confirmed from './confirmed.jsx';
-import trainerReview from './trainerReview.jsx';
 import _ from 'lodash';
-
 
 class App extends React.Component {
   constructor(props) {
@@ -52,13 +50,8 @@ class App extends React.Component {
           <TrainerDash endpoint="/api/bookings" editProfile={this.onTrainerSignUp.bind(this)} />
         )} />
         <Route path='/dash' component={() => (
-<<<<<<< HEAD
           <UserDash endpoint="/api/bookings" />
-=======
-          <UserDash component={Pending} />
->>>>>>> Bookings render on user end
         )} />
-        <Route path='/trainerReview' component={trainerReview} />
         <Route path="/" component={Home} />
       </Router>
     );
