@@ -5,9 +5,6 @@ import ProfilePictureEditor from './ProfilePictureEditor.jsx';
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
     this.handleFormChange = this.handleFormChange.bind(this);
 
   }

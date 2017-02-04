@@ -14,11 +14,12 @@ class TrainerDash extends React.Component {
     this.state = {
       confirmed: [],
       pending: [],
+      update: false,
       profileImage: ''
     };
   }
 
-  updateBookings() {
+  updateBookings(cb) {
     var outer = this;
     $.get('/api/bookings').done((bookings) => {
       if (bookings === 'no email') {
@@ -36,7 +37,7 @@ class TrainerDash extends React.Component {
         outer.setState({
           confirmed: confirmedBookings,
           pending: pendingBookings
-        });   
+        }, cb);   
       }
     });
   }
@@ -53,6 +54,10 @@ class TrainerDash extends React.Component {
   }
 
   componentDidUpdate(props, state) {
+    if (state.update !== this.state.update) {
+      this.updateBookings();
+    }
+
     var prevCState = JSON.stringify(state.confirmed);
     var newCState = JSON.stringify(this.state.confirmed);
     var prevPState = JSON.stringify(state.pending);
@@ -60,6 +65,15 @@ class TrainerDash extends React.Component {
     if (prevCState !== newCState || prevPState !== newPState) {
       this.updateBookings();
     }
+  }
+
+  submitRequest(cb) {
+    var outer = this;
+    this.setState({
+      update: !this.state.update
+    }, function() {
+      outer.updateBookings(cb);
+    });
   }
 
   acceptRequest(bookingId) {
@@ -103,9 +117,9 @@ class TrainerDash extends React.Component {
     }).then(function() {
       window.location.href = '#/';
     });
-  } 
+  }
+
   render() {
-    console.log(this.props);
     return (
       <div className="dash-body">
         <button onClick={this.logout.bind(this)}>Logout</button>
@@ -122,7 +136,7 @@ class TrainerDash extends React.Component {
         
         <div className="dash-container w-col w-col-6" id="confirmed">
           <h1 id="center" onClick={this.acceptRequest.bind(this)}>Confirmed</h1>
-          <BookingTable booking={this.state.confirmed} RequestType={Confirmed} />
+          <BookingTable booking={this.state.confirmed} RequestType={Confirmed} submitRequest={this.submitRequest.bind(this)} />
         </div>
 
         <div className="dash-container w-col-6" id="pending">

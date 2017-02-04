@@ -18,7 +18,7 @@ class UserDash extends React.Component {
     };
   }
      
-  updateBookings() {
+  updateBookings(cb) {
     var outer = this;
     $.get('/api/userBookings').done((bookings) => {
       if (bookings === 'no email') {
@@ -36,7 +36,7 @@ class UserDash extends React.Component {
         outer.setState({
           confirmed: confirmedBookings,
           pending: pendingBookings
-        });
+        }, cb);
       }
     });
   }
@@ -49,17 +49,19 @@ class UserDash extends React.Component {
     if (state.update !== this.state.update) {
       this.updateBookings();
     }
-  }  
+  }
  
-  submitRequest() {
+  submitRequest(cb) {
+    var outer = this;
     this.setState({
       update: !this.state.update
+    }, function() {
+      outer.updateBookings(cb);
     });
   }
 
   rejectRequest(bookingId) {
     const props = this.props;
-    console.log(props);
     let outer = this;
     $.ajax({
       url: props.endpoint,
@@ -99,7 +101,7 @@ class UserDash extends React.Component {
 
         <div className="dash-container w-col w-col-6" id="confirmed">
           <h1 id="center">Confirmed Bookings</h1>
-          <BookingTable booking={this.state.confirmed} RequestType={Confirmed} type={'user'} /> 
+          <BookingTable booking={this.state.confirmed} RequestType={Confirmed} type={'user'} submitRequest={this.submitRequest.bind(this)} /> 
         </div>
 
         <div className="dash-container w-col-6" id="pending">
