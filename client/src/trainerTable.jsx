@@ -10,6 +10,7 @@ class TrainerTable extends React.Component {
     this.state = {
       entries: [],
       location: undefined,
+      warriorName: undefined
     };
   }
 
@@ -20,12 +21,13 @@ class TrainerTable extends React.Component {
       method: 'GET',
       ContentType: 'application/json'
     }).done(function (response) {
+      outer.setState({warriorName: response.firstName + ' ' + response.lastName});
       $.ajax({
         url: '/api/filterTrainers',
         method: 'GET',
         ContentType: 'application/json',
         data: {
-          location: response,
+          location: response.location,
         }
       })
       .done(function (respo) {

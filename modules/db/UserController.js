@@ -45,7 +45,7 @@ module.exports = {
 
   getUser: function(req, res) {
     UserModel.find({username: req.session.email}).then(function(userInfo) {
-      res.json(userInfo[0].location);
+      res.json(userInfo[0]);
     });
   }
 
