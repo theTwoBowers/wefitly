@@ -11,10 +11,7 @@ var BookingSchema = new Schema({
   isBooked: Boolean,
   duration: String,
   date: String,
-<<<<<<< HEAD
-  messages: [String]
-=======
->>>>>>> Convert UserDash into class
+  messages: [[String]]
 });
 
 module.exports = mongoose.model('Booking', BookingSchema);
