@@ -2678,6 +2678,10 @@ textarea.w-select {
 }
 
 #bookingMessages {
+  height: 150px;
+  min-height: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
   margin-top: 10px;
   background-color: #ffffff;
   text-align: left
@@ -2685,4 +2689,26 @@ textarea.w-select {
 
 #bookingInput {
   width: 100%;
+}
+
+#expandMessages {
+  margin-top: 20px;
+  float: left;
+}
+
+#messageText {
+  display: unset;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+#timeStamp {
+  width: 20%;
+  min-width: 110px;
+  float: right;
+}
+
+#message {
+  width: 100%;
+  height: auto;
 }

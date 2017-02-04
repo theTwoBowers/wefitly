@@ -82,12 +82,9 @@ module.exports = {
   },
 
   addMessage: function(req, res) {
-    BookingSchema.findByIdAndUpdate(req.body._id, {$push: {messages: req.body.message}}).then(function () {
-      if (err) {
-        console.error(err);
-      } else {
-        res.end('message sent');
-      }
+    BookingSchema.findByIdAndUpdate(req.body._id, {$push: {messages: req.body.message}}).then(function(changedBooking) {
+      console.log('In the server');
+      res.end('message sent');
     });
   }
 };

@@ -6,8 +6,7 @@ class Confirmed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: ['Trainer: hello', 'Warrior: hello...', 'Trainer: ready to work hard?', 'Warrior: no.'],
-      visibility: {display: 'none'}
+      messageVisibility: {display: 'none'}
     };
   }
 
@@ -28,6 +27,7 @@ class Confirmed extends React.Component {
       });
     }
   }
+
   correctDate(date) {
     var d = date.substr(4, 1);
     var c = date.substr(0, 4);
@@ -36,41 +36,54 @@ class Confirmed extends React.Component {
   } 
 
   toggleMessages() {
-    console.log(this.state.visibility.display);
-    if (this.state.visibility.display === 'none') {
+    if (this.state.messageVisibility.display === 'none') {
       this.setState({
-        visibility: {display: 'unset'}
+        messageVisibility: {display: 'unset'}
+      }, function() {
+        $('#bookingMessages').scrollTop($('#bookingMessages')[0].scrollHeight);
       });
     } else {
       this.setState({
-        visibility: {display: 'none'}
+        messageVisibility: {display: 'none'}
       });
     }
+  }
+
+  getTime() {
+    var date = new Date(), hours = date.getHours(), min = date.getMinutes(), dateStr = String(date).split(' '), time;
+    if (min.toString().length === 1) {
+      min = '0' + min;
+    }
+    if (hours > 12) {
+      hours = hours - 12;
+      hours === 0 ? time = '12:' + min + 'PM' : time = hours + ':' + min + 'PM';
+    } else {
+      hours === 0 ? time = '12:' + min + 'AM' : time = hours + ':' + min + 'AM';
+    }
+    return dateStr[1] + ' ' + dateStr[2] + ' ' + time;
   }
 
   writeMessage(e) {
     e.preventDefault();
     var outer = this;
-    console.log(outer.props.submitRequest());
     $.ajax({
       url: '/api/chat',
       type: 'PUT',
       data: {
         _id: outer.props.bookingId,
-        message: outer.state.sender + outer.refs.message.value
+        message: [outer.state.sender + outer.refs.message.value, outer.getTime()]
       }
-    }).done(function() {
-      console.log(outer.props.submitRequest());
-      outer.props.submitRequest();
+    }).then(function() {
+      outer.props.submitRequest(function() {
+        $('#bookingMessages').scrollTop($('#bookingMessages')[0].scrollHeight);
+      });
     }).fail(function() {
-      console.log('you fail');
+      console.log('Failed to send message');
     });
-
     outer.refs.message.value = '';
   }
 
   render() {
-    console.log(this.props);
     return (
       <div id="confirmedBooking">
         <li className="testimonial-row" id="confirmedBooking">
@@ -95,18 +108,25 @@ class Confirmed extends React.Component {
             </div>
           </div>
           <div className="w-row">
-            <span onClick={this.toggleMessages.bind(this)}>Messages</span>
+            <button id="expandMessages" onClick={this.toggleMessages.bind(this)}>Messages &#9660;</button>
           </div>
-          <div className="w-row" style={this.state.visibility}>
+          <div className="w-row" style={this.state.messageVisibility}>
             <div className="w-col w-col-12" id="bookingMessages">
-              {this.props.messages.reverse().map((message, i) =>
-                <p key={i}>{message}</p>
+              {this.props.messages.map((message, i) =>
+                <p id="message">
+                  <div id="timeStamp">
+                    <span>{message[1]}</span>
+                  </div>
+                  <div id="messageText">
+                    <span id="messageText" key={i}>{message[0]}</span>
+                  </div>
+                </p>
               )}
-              <form onSubmit={this.writeMessage.bind(this)}>
-                <input id="bookingInput" ref="message"></input>
-                <button>Write message</button>
-              </form>
             </div>
+            <form onSubmit={this.writeMessage.bind(this)}>
+              <input id="bookingInput" ref="message" placeholder="Write a message here." autoComplete="off"></input>
+              <button>Submit message</button>
+            </form>
           </div>
         </li>
       </div>
